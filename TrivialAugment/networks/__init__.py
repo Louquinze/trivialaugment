@@ -16,10 +16,21 @@ from TrivialAugment.ac_func.experiment_01 import Func_01
 
 
 # example usage get_model(
-def get_model(conf, bs, num_class=10, writer=None):
+def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
+    if ac_func == "ReLU":
+        ac_func = nn.ReLU
+    elif ac_func == "SiLU":
+        ac_func = nn.SiLU
+    elif ac_func == "Func_01":
+        ac_func = Func_01
+    else:
+        raise KeyError(f"{ac_func} is not a valid function")
+
+    print(ac_func)
+
     name = conf['type']
     ad_creators = (None, None)
-    # nn.ReLU(
+    # ac_func(
     if name == 'resnet50':
         model = ResNet(dataset='imagenet', depth=50, num_classes=num_class, bottleneck=True)
     elif name == 'resnet200':
@@ -28,17 +39,17 @@ def get_model(conf, bs, num_class=10, writer=None):
         model = WideResNet(40, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
                            groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
-                           virtual_bn=conf.get('virtual_bn', False), ac_func=Func_01)
+                           virtual_bn=conf.get('virtual_bn', False), ac_func=ac_func)
     elif name == 'wresnet28_10':
         model = WideResNet(28, 10, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
                            groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
-                           virtual_bn=conf.get('virtual_bn', False), ac_func=Func_01)
+                           virtual_bn=conf.get('virtual_bn', False), ac_func=ac_func)
     elif name == 'wresnet28_2':
         model = WideResNet(28, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
                            groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
-                           virtual_bn=conf.get('virtual_bn', False), ac_func=Func_01)
+                           virtual_bn=conf.get('virtual_bn', False), ac_func=ac_func)
     elif name == 'miniconvnet':
         model = SeqConvNet(num_class, adaptive_dropout_creator=ad_creators[0], batch_norm=False)
     elif name == 'mlp':
