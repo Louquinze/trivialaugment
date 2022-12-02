@@ -23,6 +23,8 @@ def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
         ac_func = nn.SiLU
     elif ac_func == "Func_01":
         ac_func = Func_01
+    elif ac_func == "Func_02":
+        ac_func = Func_02
     else:
         raise KeyError(f"{ac_func} is not a valid function")
 

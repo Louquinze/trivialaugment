@@ -13,6 +13,6 @@ if __name__ == '__main__':
             print(data)
 
         if "128" in file:
-            with open(f"confs/swish_{file}", 'w') as f:
-                data["ac_func"] = "SiLU"
+            with open(f"confs/func_02_{file}", 'w') as f:
+                data["ac_func"] = "Func_02"
                 data = yaml.dump(data, f, sort_keys=False, default_flow_style=False)
