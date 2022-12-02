@@ -12,7 +12,7 @@ from TrivialAugment.networks.shakeshake.shake_resnext import ShakeResNeXt
 from TrivialAugment.networks.convnet import SeqConvNet
 from TrivialAugment.networks.mlp import MLP
 from TrivialAugment.common import apply_weightnorm
-from TrivialAugment.ac_func.experiment_01 import Func_01
+from TrivialAugment.ac_func.experiment_01 import Func_01, Func_02
 
 
 # example usage get_model(
