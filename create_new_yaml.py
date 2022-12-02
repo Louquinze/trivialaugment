@@ -10,6 +10,7 @@ if __name__ == '__main__':
             data = yaml.load(f, Loader=SafeLoader)
             print(data)
         # Todo set gpu = 2 for 128 option
-        with open(f"confs/{file.replace('128', '64')}", 'w') as f:
-            data["batch"] = 64
-            data = yaml.dump(data, f, sort_keys=False, default_flow_style=False)
+        if "128" in file:
+            with open(f"confs/gpu2_{file}", 'w') as f:
+                data["gpu"] = 2
+                data = yaml.dump(data, f, sort_keys=False, default_flow_style=False)
