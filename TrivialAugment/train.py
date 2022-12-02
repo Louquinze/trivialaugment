@@ -423,6 +423,7 @@ def run_from_py(dataroot, config_dict, save=''):
 
 
 if __name__ == '__main__':
+    # Todo safe beta values of ac_funcs in logs
     pre_parser = ArgumentParser()
     pre_parser.add_argument('--local_rank', default=None, type=int)
     args, _ = pre_parser.parse_known_args()
