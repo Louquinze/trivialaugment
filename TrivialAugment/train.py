@@ -299,6 +299,30 @@ def train_and_eval(rank, worldsize, tag, dataroot, test_ratio=0.0, cv_fold=0, re
         if early_finish_epoch == epoch:
             break
 
+    try:
+        with open(f'logs/{tag}/ac_func_layer.npy', 'wb') as f:
+            np.save(f, np.hstack([j.detach().cpu().numpy()[0][0] for j in model.ac_func_layer.parameters()]))
+
+        for idx, i in enumerate(model.layer1):
+            with open(f'logs/{tag}/layer1_1.npy', 'wb') as f:
+                np.save(f, np.hstack([j.detach().cpu().numpy()[0][0] for j in i.ac_func_1.parameters()]))
+            with open(f'logs/{tag}/layer1_2.npy', 'wb') as f:
+                np.save(f, np.hstack([j.detach().cpu().numpy()[0][0] for j in i.ac_func_2.parameters()]))
+
+        for idx, i in enumerate(model.layer2):
+            with open(f'logs/{tag}/layer2_1.npy', 'wb') as f:
+                np.save(f, np.hstack([j.detach().cpu().numpy()[0][0] for j in i.ac_func_1.parameters()]))
+            with open(f'logs/{tag}/layer2_2.npy', 'wb') as f:
+                np.save(f, np.hstack([j.detach().cpu().numpy()[0][0] for j in i.ac_func_2.parameters()]))
+
+        for idx, i in enumerate(model.layer3):
+            with open(f'logs/{tag}/layer3_1.npy', 'wb') as f:
+                np.save(f, np.hstack([j.detach().cpu().numpy()[0][0] for j in i.ac_func_1.parameters()]))
+            with open(f'logs/{tag}/layer3_2.npy', 'wb') as f:
+                np.save(f, np.hstack([j.detach().cpu().numpy()[0][0] for j in i.ac_func_2.parameters()]))
+
+    except Exception as e:
+        print(f"Exc: {e}")
     del model
 
     return result
