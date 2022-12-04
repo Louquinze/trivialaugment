@@ -42,7 +42,6 @@ class Func_03(nn.Module):
         super().__init__()
 
     def forward(self, input):
-        print(input)
         return torch.log1p(torch.exp(torch.sigmoid(input) * torch.abs(input))) * torch.minimum(input, torch.zeros_like(input))
 
 
@@ -55,5 +54,4 @@ class Func_04(nn.Module):
         super().__init__()
 
     def forward(self, input):
-        print(input)
         return torch.maximum(torch.maximum(torch.sigmoid(input) * torch.sigmoid(input), torch.zeros_like(input)), torch.asinh(input))
