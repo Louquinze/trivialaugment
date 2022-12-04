@@ -12,7 +12,7 @@ from TrivialAugment.networks.shakeshake.shake_resnext import ShakeResNeXt
 from TrivialAugment.networks.convnet import SeqConvNet
 from TrivialAugment.networks.mlp import MLP
 from TrivialAugment.common import apply_weightnorm
-from TrivialAugment.ac_func.experiment_01 import Func_01, Func_02
+from TrivialAugment.ac_func.experiment_01 import Func_01, Func_02, Func_03, Func_04
 
 
 # example usage get_model(
@@ -25,6 +25,10 @@ def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
         ac_func = Func_01
     elif ac_func == "Func_02":
         ac_func = Func_02
+    elif ac_func == "Func_03":
+        ac_func = Func_03
+    elif ac_func == "Func_04":
+        ac_func = Func_04
     else:
         raise KeyError(f"{ac_func} is not a valid function")
 
