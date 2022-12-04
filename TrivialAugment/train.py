@@ -151,6 +151,7 @@ def train_and_eval(rank, worldsize, tag, dataroot, test_ratio=0.0, cv_fold=0, re
     if worldsize > 1:
         model = DDP(model.to(rank), device_ids=[rank])
     else:
+        assert torch.cuda.is_available()
         model = model.cuda()
 
 
