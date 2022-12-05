@@ -353,6 +353,7 @@ def parse_args():
     parser.add_argument('--cv', type=int, default=0)
     parser.add_argument('--only-eval', action='store_true')
     parser.add_argument('--local_rank', default=None, type=int)
+    parser.add_argument('--seed', default=None, type=int)
     return parser.parse_args()
 
 
