@@ -115,8 +115,8 @@ def conv_init(m):
 class WideBasic(nn.Module):
     def __init__(self, in_planes, planes, dropout_rate, norm_creator, ac_func, stride=1, adaptive_dropouter_creator=None):
         super(WideBasic, self).__init__()
-        self.ac_func_1 = ac_func()
-        self.ac_func_2 = ac_func()
+        self.ac_func_1 = ac_func
+        # self.ac_func_2 = ac_func
         self.bn1 = norm_creator(in_planes)
         self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3, padding=1, bias=True)
         if adaptive_dropouter_creator is None:
@@ -133,8 +133,8 @@ class WideBasic(nn.Module):
             )
 
     def forward(self, x):
-        out = self.dropout(self.conv1(self.ac_func_2.forward(self.bn1(x))))
-        out = self.conv2(self.ac_func_2.forward(self.bn2(out)))
+        out = self.dropout(self.conv1(self.ac_func_1.forward(self.bn1(x))))
+        out = self.conv2(self.ac_func_1.forward(self.bn2(out)))
         out += self.shortcut(x)
 
         return out
@@ -146,8 +146,8 @@ class WideResNet(nn.Module):
         super(WideResNet, self).__init__()
         self.in_planes = 16
         self.adaptive_conv_dropouter_creator = adaptive_conv_dropouter_creator
-        self.ac_func = ac_func
-        self.ac_func_layer = ac_func()
+        self.ac_func = ac_func()
+        # self.ac_func_layer = ac_func()
 
         assert ((depth - 4) % 6 == 0), 'Wide-resnet depth should be 6n+4'
         assert sum([groupnorm, examplewise_bn, virtual_bn]) <= 1
@@ -213,7 +213,7 @@ class WideResNet(nn.Module):
         out = self.layer1(out)
         out = self.layer2(out)
         out = self.layer3(out)
-        out = self.ac_func_layer.forward(self.bn1(out))
+        out = self.ac_func.forward(self.bn1(out))
         # out = F.avg_pool2d(out, 8)
         out = F.adaptive_avg_pool2d(out, (1, 1))
         out = out.view(out.size(0), -1)
