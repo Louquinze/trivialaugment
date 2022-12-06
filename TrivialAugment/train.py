@@ -147,7 +147,8 @@ def train_and_eval(rank, worldsize, tag, dataroot, test_ratio=0.0, cv_fold=0, re
     trainsampler, trainloader, validloader, testloader_, testtrainloader_, dataset_info = get_dataloaders(C.get()['dataset'], C.get()['batch'], dataroot, test_ratio, split_idx=cv_fold, distributed=worldsize>1, started_with_spawn=C.get()['started_with_spawn'], summary_writer=writers[0])
 
     # create a model & an optimizer
-    model = get_model(C.get()['model'], C.get()['batch'], num_class(C.get()['dataset']), writer=writers[0], ac_func=C.get()["ac_func"])
+    print(C.get())
+    model = get_model(C.get()['model'], C.get()['batch'], num_class(C.get()['dataset']), writer=writers[0], ac_func=C.get()["func"])
     if worldsize > 1:
         model = DDP(model.to(rank), device_ids=[rank])
     else:
@@ -354,6 +355,7 @@ def parse_args():
     parser.add_argument('--only-eval', action='store_true')
     parser.add_argument('--local_rank', default=None, type=int)
     parser.add_argument('--seed', default=None, type=int)
+    parser.add_argument('--func', default=None, type=str)
     return parser.parse_args()
 
 
