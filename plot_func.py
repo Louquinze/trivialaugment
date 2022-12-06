@@ -10,17 +10,22 @@ if __name__ == '__main__':
     r_lst = [1, 5, 15, 50]
     with torch.no_grad():
         for idx, F in enumerate(
-                [Func_01, Func_02, Func_03, Func_04, Func_05, Func_06, Func_07, Func_08, Func_09, Func_10]):
+                [Func_01, Func_02, Func_03, Func_04, Func_05, Func_06, Func_07, Func_08, Func_09,
+                 Func_10]):  # , logexp]):
             for r in r_lst:
                 # for b_0 in torch.linspace(-0.5, 0.5, 3):
                 #     for b_1 in torch.linspace(-0.5, 0.5, 3):
 
                 x = torch.linspace(-r, r, 10000)
-                func = F()
-                if sum("beta" in key for key in func._parameters):
-                    y = func.forward(x).detach()[0][0]
+                if idx != 10:
+                    func = F()
+                    if sum("beta" in key for key in func._parameters):
+                        y = func.forward(x).detach()[0][0]
+                    else:
+                        y = func.forward(x).detach()
                 else:
-                    y = func.forward(x).detach()
+                    y = F(x)
+                    print(y)
 
                 df["x"] += x.tolist()
                 df["y"] += y.tolist()
