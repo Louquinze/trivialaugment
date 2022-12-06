@@ -77,7 +77,7 @@ class Func_04(nn.Module):
         return torch.maximum(torch.zeros_like(input), torch.asinh(input))
 
 
-class Func_04(nn.Module):
+class Func_05(nn.Module):
     """
     (85.04, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/94')
     """
@@ -91,7 +91,7 @@ class Func_04(nn.Module):
         return torch.cos(torch.sqrt(input.clamp(min=1e-05)) * logexp(input)) - logexp(input)
 
 
-class Func_05(nn.Module):
+class Func_06(nn.Module):
     """
     (84.27, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/34')
     (activation_cell-edge(1,2)): Abs_op()
@@ -111,7 +111,7 @@ class Func_05(nn.Module):
         return self.beta_mix * torch.atan(torch.abs(input)) + (1 - self.beta_mix) * torch.asinh(input)
 
 
-class Func_05(nn.Module):
+class Func_07(nn.Module):
     """
     (83.88, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/57')
     """
@@ -125,7 +125,7 @@ class Func_05(nn.Module):
         return torch.sigmoid(torch.minimum(torch.sigmoid(input), input) + self.beta) * torch.abs(input)
 
 
-class Func_06(nn.Module):
+class Func_08(nn.Module):
     """
     (83.84, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/91')
     """
@@ -142,7 +142,7 @@ class Func_06(nn.Module):
                     1 - self.beta_mix) * torch.erf(input)
 
 
-class Func_07(nn.Module):
+class Func_09(nn.Module):
     """
     (83.65, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/72')
     """
@@ -156,7 +156,7 @@ class Func_07(nn.Module):
         return torch.exp2(torch.sigmoid(torch.atan(input)) * torch.erf(input)) - (input * self.beta)
 
 
-class Func_08(nn.Module):
+class Func_10(nn.Module):
     """
     (83.58, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/21')
 
@@ -179,7 +179,7 @@ class Func_08(nn.Module):
         return torch.minimum(torch.cos(torch.relu(input)), -input)
 
 
-class Func_09(nn.Module):
+class Func_11(nn.Module):
     """
     (83.49, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/78')
     """
@@ -193,7 +193,7 @@ class Func_09(nn.Module):
         return torch.sigmoid(torch.cos(torch.log(input.clamp(min=1e-05)) * (self.beta + input))) * torch.tanh(input)
 
 
-class Func_10(nn.Module):
+class Func_12(nn.Module):
     """
     (83.36, '../save_only_topk/run_topk/cifar10/DARTSTopKOptimizer/10/512/83')
 
