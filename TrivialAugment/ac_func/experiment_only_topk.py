@@ -6,11 +6,11 @@ def logexp(input):
     """
     Ln(1+e^x)
 
-    for fixing inf issues form x = 10.37 ~ ln(32000) --> linear function
+    for fixing inf issues form x = 10 ~ ln(32000) --> linear function
 
     """
 
-    return torch.where(input < 10.37, torch.log1p(torch.exp(input)), input)
+    return input.where(input > 10, torch.log1p(torch.exp(input)))
 
 
 class Func_01(nn.Module):
