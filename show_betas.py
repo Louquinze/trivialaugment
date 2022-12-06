@@ -2,7 +2,7 @@ import numpy as np
 import os
 
 if __name__ == '__main__':
-    path = "/home/lukas/PycharmProjects/Evaluation/eval_save_cifar10/logs"
+    path = "/home/lukas/PycharmProjects/Evaluation/eval_func/logs"
     os.chdir(path)
     for func in os.listdir():
         # open torch

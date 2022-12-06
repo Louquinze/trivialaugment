@@ -12,7 +12,8 @@ from TrivialAugment.networks.shakeshake.shake_resnext import ShakeResNeXt
 from TrivialAugment.networks.convnet import SeqConvNet
 from TrivialAugment.networks.mlp import MLP
 from TrivialAugment.common import apply_weightnorm
-from TrivialAugment.ac_func.experiment_01 import Func_01, Func_02, Func_03, Func_04
+from TrivialAugment.ac_func.experiment_only_topk import Func_01, Func_02, Func_03, Func_04, Func_05, Func_06, Func_07, \
+    Func_08, Func_09, Func_10
 
 
 # example usage get_model(
@@ -21,6 +22,8 @@ def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
         ac_func = nn.ReLU
     elif ac_func == "SiLU":
         ac_func = nn.SiLU
+    elif ac_func == "Sigmoid":
+        ac_func = nn.Sigmoid
     elif ac_func == "Func_01":
         ac_func = Func_01
     elif ac_func == "Func_02":
@@ -29,6 +32,19 @@ def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
         ac_func = Func_03
     elif ac_func == "Func_04":
         ac_func = Func_04
+    elif ac_func == "Func_05":
+        ac_func = Func_05
+    elif ac_func == "Func_06":
+        ac_func = Func_06
+    elif ac_func == "Func_07":
+        ac_func = Func_07
+    elif ac_func == "Func_08":
+        ac_func = Func_08
+    elif ac_func == "Func_09":
+        ac_func = Func_09
+    elif ac_func == "Func_10":
+        ac_func = Func_10
+
     else:
         raise KeyError(f"{ac_func} is not a valid function")
 
