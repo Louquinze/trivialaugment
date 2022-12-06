@@ -8,8 +8,8 @@ with open("run.txt", "w") as f:
                 f" --dataroot data --tag EXPERIMENT_{func}_{seed} --seed {seed} --func {func}"
                 f"\n")
 
-    for func in func_lst:
-        for seed in range(5):
+    for seed in range(5):
+        for func in func_lst:
             f.write(
                 f"python -m TrivialAugment.train"
                 f" -c confs/wresnet28x10_svhncore_b64_maxlr.1_ta_fixedsearchspace.yaml"
