@@ -8,7 +8,6 @@ with open("run.txt", "w") as f:
                 f" --dataroot data --tag EXPERIMENT_{func}_{seed} --seed {seed} --func {func}"
                 f"\n")
 
-with open("run.txt", "w") as f:
     for func in func_lst:
         for seed in range(5):
             f.write(
