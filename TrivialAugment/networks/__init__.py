@@ -13,7 +13,7 @@ from TrivialAugment.networks.convnet import SeqConvNet
 from TrivialAugment.networks.mlp import MLP
 from TrivialAugment.common import apply_weightnorm
 from TrivialAugment.ac_func.experiment_only_topk import Func_01, Func_02, Func_03, Func_04, Func_05, Func_06, Func_07, \
-    Func_08, Func_09, Func_10
+    Func_08, Func_09, Func_10, Func_11, Func_12, Func_13, Func_14
 
 
 # example usage get_model(
@@ -44,6 +44,14 @@ def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
         ac_func = Func_09
     elif ac_func == "Func_10":
         ac_func = Func_10
+    elif ac_func == "Func_11":
+        ac_func = Func_11
+    elif ac_func == "Func_12":
+        ac_func = Func_12
+    elif ac_func == "Func_13":
+        ac_func = Func_13
+    elif ac_func == "Func_14":
+        ac_func = Func_14
 
     else:
         raise KeyError(f"{ac_func} is not a valid function")

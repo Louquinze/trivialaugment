@@ -139,7 +139,7 @@ class Func_08(nn.Module):
 
     def forward(self, input):
         return self.beta_mix * -torch.exp(-self.beta_sub * torch.abs(torch.erf(input) - (input + self.beta))) + (
-                    1 - self.beta_mix) * torch.erf(input)
+                1 - self.beta_mix) * torch.erf(input)
 
 
 class Func_09(nn.Module):
@@ -212,3 +212,65 @@ class Func_12(nn.Module):
 
     def forward(self, input):
         return torch.exp(-self.beta_sub * torch.abs(torch.sigmoid(torch.pow(input, 2) * torch.cosh(input)) - input))
+
+
+class Func_13(nn.Module):
+    """
+    Train accuracy top1: 82.584
+    Test accuracies: top-1 = 85.69
+
+    Graph(
+      (activation_cell-edge(1,2)): Cos()
+      (activation_cell-edge(1,3)): Minimum0()
+      (activation_cell-edge(1,8)): Beta_add()
+      (activation_cell-edge(2,4)): Identity()
+      (activation_cell-edge(3,4)): Identity()
+      (activation_cell-edge(4,5)): Minimum()
+      (activation_cell-edge(5,6)): Identity()
+      (activation_cell-edge(6,7)): Sin()
+      (activation_cell-edge(7,9)): Identity()
+      (activation_cell-edge(8,9)): Identity()
+      (activation_cell-edge(9,10)): ExpBetaSubAbs()
+      (activation_cell-edge(10,11)): Identity()
+    )
+    Search mahmoud
+    """
+
+    def __init__(self, channels: int = 1):
+        super().__init__()
+        self.beta_sub = nn.Parameter(torch.ones((channels, 1, 1)) - 0.5)
+        self.beta = nn.Parameter(torch.ones((channels, 1, 1)))
+
+    def forward(self, input):
+        return torch.exp(
+            -self.beta_sub * torch.abs(torch.sin(torch.minimum(torch.cos(input), -torch.relu(-input))) - self.beta))
+
+
+class Func_14(nn.Module):
+    """
+    Train accuracy (top1, top5): 82.068
+    Test accuracies: top-1 = 86.06
+
+    Graph(
+      (activation_cell-edge(1,2)): Asinh()
+      (activation_cell-edge(1,3)): Sign()
+      (activation_cell-edge(1,8)): Atan()
+      (activation_cell-edge(2,4)): Identity()
+      (activation_cell-edge(3,4)): Identity()
+      (activation_cell-edge(4,5)): Sub()
+      (activation_cell-edge(5,6)): Identity()
+      (activation_cell-edge(6,7)): Beta_mul()
+      (activation_cell-edge(7,9)): Identity()
+      (activation_cell-edge(8,9)): Identity()
+      (activation_cell-edge(9,10)): SigMul()
+      (activation_cell-edge(10,11)): Identity()
+    )
+    """
+
+    def __init__(self, channels: int = 1):
+        super().__init__()
+        # self.beta_sub = nn.Parameter(torch.ones((channels, 1, 1)) - 0.5)
+        self.beta_mul = nn.Parameter(torch.ones((channels, 1, 1)))
+
+    def forward(self, input):
+        return torch.sigmoid(self.beta_mul * (torch.asinh(input) + input)) * torch.atan(input)
