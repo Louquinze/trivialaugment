@@ -42,7 +42,7 @@ class Func_02(nn.Module):
 
     def forward(self, input):
         return self.beta_3 * torch.pow(torch.exp(-self.beta_2 * torch.abs(-torch.relu(-input) - self.beta_1)), 2) + (
-                1 - self.beta_3) * torch.asin(input)
+                1 - self.beta_3) * torch.asinh(input)
 
 
 class Func_03(nn.Module):
