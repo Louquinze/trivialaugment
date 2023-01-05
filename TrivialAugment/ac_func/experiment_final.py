@@ -24,7 +24,9 @@ class Func_01(nn.Module):
 
     def forward(self, input):
         return torch.sigmoid(
-            torch.sinc(torch.exp(-self.beta_1 * torch.pow(logexp(input) - torch.tanh(input), 2)))) * torch.relu(input)
+            torch.sinc(torch.exp(
+                -self.beta_1 * torch.pow(logexp(input) - torch.tanh(input), 2).clamp(max=32768, min=-32768)).clamp(
+                max=32768, min=-32768))) * torch.relu(input)
 
 
 class Func_02(nn.Module):
