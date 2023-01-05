@@ -1,4 +1,4 @@
-func_lst = [f"Func_{str(i).zfill(2)}" for i in range(1, 11)] + ["ReLU", "SiLU", "Sigmoid"]
+func_lst = [f"Func_{str(i).zfill(2)}" for i in range(1, 5)] + ["ReLU", "SiLU", "Sigmoid"]
 
 with open("run.txt", "w") as f:
     for seed in range(5):
