@@ -65,7 +65,7 @@ class Func_04(nn.Module):
 
     def forward(self, input):
         return torch.sigmoid(
-            torch.relu(torch.div(1.0, input).clamp(max=100, min=-100) + 1) * torch.relu(input))
+            torch.relu(torch.div(1.0, input).clamp(max=100, min=-100) + 1)) * torch.relu(input)
 
 
 class Func_05(nn.Module):
