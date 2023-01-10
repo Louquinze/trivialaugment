@@ -431,8 +431,6 @@ def spawn_process(global_rank, worldsize, port_suffix, args, config_path=None, c
     t = time.time()
     result = train_and_eval(local_rank, worldsize, args.tag, args.dataroot, test_ratio=args.cv_ratio, cv_fold=args.cv,
                             save_path=args.save, only_eval=args.only_eval, metric='last')
-    with open(f"{args.tag}.res") as f:
-        f.write(result)
     elapsed = time.time() - t
     print('done')
 
@@ -443,6 +441,8 @@ def spawn_process(global_rank, worldsize, port_suffix, args, config_path=None, c
     logger.info('elapsed time: %.3f Hours' % (elapsed / 3600.))
     logger.info('top1 error in testset: %.4f' % (1. - result['top1_test']))
     logger.info(args.save)
+    with open(f"{args.tag}.res") as f:
+        f.write(f"{result}")
     if worldsize:
         cleanup()
 
