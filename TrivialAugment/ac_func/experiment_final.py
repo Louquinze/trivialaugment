@@ -64,8 +64,8 @@ class Func_04(nn.Module):
         # self.beta_mix = 0.5
 
     def forward(self, input):
-        return torch.sigmoid(
-            torch.relu(torch.div(1.0, input).clamp(max=100, min=-100) + 1)) * torch.relu(input)
+        return torch.mul(torch.sigmoid(
+            torch.relu(torch.div(1.0, input).clamp(max=100, min=-100) + 1)),  torch.relu(input))
 
 
 class Func_05(nn.Module):
@@ -85,6 +85,6 @@ class Func_05(nn.Module):
         a = torch.maximum(a, b)
         a = torch.div(1.0, a).clamp(max=100, min=-100)
         a = torch.sigmoid(a)
-        res = a * c
+        res = torch.mul(a, c)
 
         return res

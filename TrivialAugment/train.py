@@ -431,6 +431,8 @@ def spawn_process(global_rank, worldsize, port_suffix, args, config_path=None, c
     t = time.time()
     result = train_and_eval(local_rank, worldsize, args.tag, args.dataroot, test_ratio=args.cv_ratio, cv_fold=args.cv,
                             save_path=args.save, only_eval=args.only_eval, metric='last')
+    with open(f"{args.tag}.res") as f:
+        f.write(result)
     elapsed = time.time() - t
     print('done')
 
@@ -461,6 +463,7 @@ class Args:
 
 
 def run_from_py(dataroot, config_dict, save=''):
+    print(save)
     args = Args(dataroot=dataroot, save=save)
     with tempfile.NamedTemporaryFile(mode='w+') as f, tempfile.NamedTemporaryFile() as result_file:
         path = f.name
