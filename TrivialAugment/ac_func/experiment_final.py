@@ -94,7 +94,9 @@ class Func_07(nn.Module):
         super().__init__()
         # self.beta_mix = 0.5
     def forward(self, input):
-        return torch.minimum(torch.sinh(torch.sinh(input) * torch.exp(input)), torch.relu(input))
+        # torch.minimum(torch.sinh(torch.sinh(input) * torch.exp(input)), torch.relu(input))
+        x_clamp = torch.where(torch.abs(input) > 2, torch.sign(input) * 2, input)
+        return torch.minimum(torch.sinh(torch.sinh(x_clamp) * torch.exp(x_clamp)), torch.relu(input))
 
 
 class Func_08(nn.Module):
@@ -107,3 +109,12 @@ class Func_08(nn.Module):
         # self.beta_mix = 0.5
     def forward(self, input):
         return torch.minimum(torch.exp(2 * torch.relu(input)), torch.relu(input))
+
+
+class Softplus(nn.Module):
+    def __init__(self, channels: int = 1):
+        super().__init__()
+        # self.beta_mix = 0.5
+
+    def forward(self, input):
+        return torch.where(input < 20, torch.log1p(torch.exp(input)), input)

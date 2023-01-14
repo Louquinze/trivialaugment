@@ -12,10 +12,11 @@ from TrivialAugment.networks.shakeshake.shake_resnext import ShakeResNeXt
 from TrivialAugment.networks.convnet import SeqConvNet
 from TrivialAugment.networks.mlp import MLP
 from TrivialAugment.common import apply_weightnorm
-from TrivialAugment.ac_func.experiment_final import Func_01, Func_02, Func_03, Func_04, Func_05, Func_06, Func_07, Func_08
+from TrivialAugment.ac_func.experiment_final import Func_01, Func_02, Func_03, Func_04, Func_05, Func_06, Func_07, Func_08, Softplus
 
 
 # example usage get_model(
+# LReLU PReLU Softplus ELU SELU GELU
 def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
     if ac_func == "ReLU":
         ac_func = nn.ReLU
@@ -23,6 +24,18 @@ def get_model(conf, bs, num_class=10, writer=None, ac_func=None):
         ac_func = nn.SiLU
     elif ac_func == "Sigmoid":
         ac_func = nn.Sigmoid
+    elif ac_func == "Softplus":
+        ac_func = Softplus
+    elif ac_func == "ELU":
+        ac_func = nn.ELU
+    elif ac_func == "SELU":
+        ac_func = nn.SELU
+    elif ac_func == "GELU":
+        ac_func = nn.GELU
+    elif ac_func == "LReLU":
+        ac_func = nn.LeakyReLU
+    elif ac_func == "PReLU":
+        ac_func = nn.PReLU
     elif ac_func == "Func_01":
         ac_func = Func_01
     elif ac_func == "Func_02":

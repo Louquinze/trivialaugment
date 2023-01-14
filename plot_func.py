@@ -60,7 +60,15 @@ for r in r_lst:
         )
             , ignore_index=True)
 
-        sns.lineplot(df_tmp, x="x", y="y", hue="func")
-        plt.title(f"Function_{idx}; x-range: {r}")
-        plt.savefig(f"Function_{idx}_x-range_{r}.png")
+        x = torch.linspace(-r, r, 1000)
+        df_tmp = df_tmp.append(pd.DataFrame(
+            {"x": torch.linspace(-r, r, 1000),
+             "y": torch.where(x < 20, torch.log1p(torch.exp(x)), x),
+             "func": ["Softplus"] * 1000}
+        )
+            , ignore_index=True)
+
+        sns.lineplot(df_tmp, x="x", y="y", hue="func", style=df_tmp["func"])
+        plt.title(f"Function_{idx + 1}; x-range: {r}")
+        plt.savefig(f"Function_{idx + 1}_x-range_{r}.png")
         plt.close()
