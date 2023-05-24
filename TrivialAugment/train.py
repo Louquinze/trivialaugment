@@ -147,7 +147,7 @@ def train_and_eval(rank, worldsize, tag, dataroot, test_ratio=0.0, cv_fold=0, re
     trainsampler, trainloader, validloader, testloader_, testtrainloader_, dataset_info = get_dataloaders(C.get()['dataset'], C.get()['batch'], dataroot, test_ratio, split_idx=cv_fold, distributed=worldsize>1, started_with_spawn=C.get()['started_with_spawn'], summary_writer=writers[0])
 
     # create a model & an optimizer
-    model = get_model(C.get()['model'], C.get()['batch'], num_class(C.get()['dataset']), writer=writers[0])
+    model = get_model(C.get()['model'], C.get()['batch'], C.get()['activation'], num_class(C.get()['dataset']), writer=writers[0])
     if worldsize > 1:
         model = DDP(model.to(rank), device_ids=[rank])
     else:

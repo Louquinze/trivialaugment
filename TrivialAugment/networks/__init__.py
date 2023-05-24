@@ -16,34 +16,42 @@ from TrivialAugment.common import apply_weightnorm
 
 
 # example usage get_model(
-def get_model(conf, bs, num_class=10, writer=None):
+def get_model(conf, bs, activation, num_class=10, writer=None):
     name = conf['type']
     ad_creators = (None,None)
 
+    if activation == "relu":
+        activation = nn.ReLU
+    elif activation == "silu":
+        activation = nn.SiLU
+    else:
+        raise KeyError
 
-    if name == 'resnet50':
-        model = ResNet(dataset='imagenet', depth=50, num_classes=num_class, bottleneck=True)
+    if name == 'resnet18':
+        model = ResNet(dataset='cifar10', depth=18, num_classes=num_class, bottleneck=True, activation=activation)
+    elif name == 'resnet50':
+        model = ResNet(dataset='imagenet', depth=50, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == 'resnet200':
-        model = ResNet(dataset='imagenet', depth=200, num_classes=num_class, bottleneck=True)
+        model = ResNet(dataset='imagenet', depth=200, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == 'wresnet40_2':
-        model = WideResNet(40, 2, dropout_rate=conf.get('dropout',0.0), num_classes=num_class, adaptive_dropouter_creator=ad_creators[0],adaptive_conv_dropouter_creator=ad_creators[1], groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False), virtual_bn=conf.get('virtual_bn', False))
+        model = WideResNet(40, 2, dropout_rate=conf.get('dropout',0.0), num_classes=num_class, adaptive_dropouter_creator=ad_creators[0],adaptive_conv_dropouter_creator=ad_creators[1], groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False), virtual_bn=conf.get('virtual_bn', False), activation=activation)
     elif name == 'wresnet28_10':
-        model = WideResNet(28, 10, dropout_rate=conf.get('dropout',0.0), num_classes=num_class, adaptive_dropouter_creator=ad_creators[0],adaptive_conv_dropouter_creator=ad_creators[1], groupnorm=conf.get('groupnorm',False), examplewise_bn=conf.get('examplewise_bn', False), virtual_bn=conf.get('virtual_bn', False))
+        model = WideResNet(28, 10, dropout_rate=conf.get('dropout',0.0), num_classes=num_class, adaptive_dropouter_creator=ad_creators[0],adaptive_conv_dropouter_creator=ad_creators[1], groupnorm=conf.get('groupnorm',False), examplewise_bn=conf.get('examplewise_bn', False), virtual_bn=conf.get('virtual_bn', False), activation=activation)
     elif name == 'wresnet28_2':
         model = WideResNet(28, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
                            groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
-                           virtual_bn=conf.get('virtual_bn', False))
+                           virtual_bn=conf.get('virtual_bn', False), activation=activation)
     elif name == 'miniconvnet':
-        model = SeqConvNet(num_class,adaptive_dropout_creator=ad_creators[0],batch_norm=False)
+        model = SeqConvNet(num_class,adaptive_dropout_creator=ad_creators[0],batch_norm=False, activation=activation)
     elif name == 'mlp':
-        model = MLP(num_class, (3,32,32), adaptive_dropouter_creator=ad_creators[0])
+        model = MLP(num_class, (3,32,32), adaptive_dropouter_creator=ad_creators[0], activation=activation)
     elif name == 'shakeshake26_2x96d':
-        model = ShakeResNet(26, 96, num_class)
+        model = ShakeResNet(26, 96, num_class, activation=activation)
     elif name == 'shakeshake26_2x112d':
-        model = ShakeResNet(26, 112, num_class)
+        model = ShakeResNet(26, 112, num_class, activation=activation)
     elif name == 'shakeshake26_2x96d_next':
-        model = ShakeResNeXt(26, 96, 4, num_class)
+        model = ShakeResNeXt(26, 96, 4, num_class, activation=activation)
     else:
         raise NameError('no model named, %s' % name)
 
@@ -54,6 +62,8 @@ def get_model(conf, bs, num_class=10, writer=None):
     #model = model.cuda()
     #model = DataParallel(model)
     cudnn.benchmark = True
+    print(model)
+    raise NotImplementedError
     return model
 
 
