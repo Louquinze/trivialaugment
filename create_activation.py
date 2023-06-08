@@ -28,12 +28,22 @@ for activation in ["relu", "silu", "gelu", "elu", "leakyrelu"]:
 res = pd.read_csv(f'res.csv')
 res = res[res.model != 'ViTtiny']
 
+res_w10 = res[res.model == 'wideresnet10x2']
+res_w10 = res_w10.sort_values(by='res_arch_val_1', ascending=False)[:int(len(res_w10)*0.25)]
+
+res_w28 = res[res.model == 'wideresnet28x2']
+res_w28 = res_w28.sort_values(by='res_arch_val_1', ascending=False)[:int(len(res_w28)*0.25)]
+
+res = pd.concat([res_w10, res_w28], ignore_index=True)
+print(res)
+
 unique_func = pd.unique(res["arch"])
 print(f"there are {len(unique_func)} unique functions")
 
 for idx, func in enumerate(unique_func):
     if len(res[res["arch"] == func]) > 1:
         res[res["arch"] == func].to_csv(f"repeating_func/{idx}.csv")
+
         f = func.split(" ")
         # arch_lr,batch_size,conv_value,dataset,nn,optimizer,seed,version,warmstart_epoch,comp_value,time_avg
         func_ext = res[res["arch"] == func][["arch_lr","conv_value","dataset","nn","optimizer","seed","version","warmstart_epoch","time_avg"]]
