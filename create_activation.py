@@ -37,6 +37,14 @@ for idx, func in enumerate(unique_func):
         f = func.split(" ")
         # arch_lr,batch_size,conv_value,dataset,nn,optimizer,seed,version,warmstart_epoch,comp_value,time_avg
         func_ext = res[res["arch"] == func][["arch_lr","conv_value","dataset","nn","optimizer","seed","version","warmstart_epoch","time_avg"]]
+
+        def check_op(op):
+            for ac in ["SiLU", "GELU", "ReLU", "LeakyReLU", "ELU"]:
+                if ac in op:
+                    return True
+            return False
+
+        f = ["nn." + op if check_op(op) else op for op in f]
         function_txt = f'''
 class Func_{idx}(nn.Module):
     """
