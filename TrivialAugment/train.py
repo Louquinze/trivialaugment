@@ -249,7 +249,7 @@ def train_and_eval(rank, worldsize, tag, dataroot, test_ratio=0.0, cv_fold=0, re
         if math.isnan(rs['train']['loss']):
             raise Exception('train loss is NaN.')
 
-        if epoch % 20 == 0 or epoch == max_epoch:
+        if epoch % 20 == 0 or epoch == max_epoch or epoch == 1:
             with torch.no_grad():
                 if C.get().get('compute_testtrain', False):
                     rs['testtrain'] = run_epoch(rank, worldsize, model, testtrainloader_, criterion, None, desc_default='testtrain', epoch=epoch, writer=writers[3], verbose=True)

@@ -14,11 +14,15 @@ from TrivialAugment.networks.mlp import MLP
 from TrivialAugment.common import apply_weightnorm
 
 
+# from my_package.my_module import my_class
+# mod = __import__('my_package.my_module', fromlist=['my_class'])
+# klass = getattr(mod, 'my_class')
+
 
 # example usage get_model(
 def get_model(conf, bs, activation, num_class=10, writer=None):
     name = conf['type']
-    ad_creators = (None,None)
+    ad_creators = (None, None)
 
     if activation == "relu":
         activation = nn.ReLU
@@ -31,10 +35,13 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
     elif activation == "gelu":
         activation = nn.GELU
     else:
-        raise KeyError
+        mod = __import__('TrivialAugment.networks.activations', fromlist=[activation])
+        activation = getattr(mod, activation)
 
     if name == 'resnet18cifar10':
         model = ResNet(dataset='cifar10', depth=18, num_classes=num_class, bottleneck=True, activation=activation)
+    elif name == 'resnet18cifar100':
+        model = ResNet(dataset='cifar100', depth=18, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == 'resnet34cifar10':
         model = ResNet(dataset='cifar10', depth=34, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == 'resnet50cifar10':
@@ -43,10 +50,22 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
         model = ResNet(dataset='imagenet', depth=50, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == 'resnet200':
         model = ResNet(dataset='imagenet', depth=200, num_classes=num_class, bottleneck=True, activation=activation)
+    elif name == 'wresnet10_2':
+        model = WideResNet(10, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
+                           adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
+                           groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
+                           virtual_bn=conf.get('virtual_bn', False), activation=activation)
+
     elif name == 'wresnet40_2':
-        model = WideResNet(40, 2, dropout_rate=conf.get('dropout',0.0), num_classes=num_class, adaptive_dropouter_creator=ad_creators[0],adaptive_conv_dropouter_creator=ad_creators[1], groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False), virtual_bn=conf.get('virtual_bn', False), activation=activation)
+        model = WideResNet(40, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
+                           adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
+                           groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
+                           virtual_bn=conf.get('virtual_bn', False), activation=activation)
     elif name == 'wresnet28_10':
-        model = WideResNet(28, 10, dropout_rate=conf.get('dropout',0.0), num_classes=num_class, adaptive_dropouter_creator=ad_creators[0],adaptive_conv_dropouter_creator=ad_creators[1], groupnorm=conf.get('groupnorm',False), examplewise_bn=conf.get('examplewise_bn', False), virtual_bn=conf.get('virtual_bn', False), activation=activation)
+        model = WideResNet(28, 10, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
+                           adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
+                           groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
+                           virtual_bn=conf.get('virtual_bn', False), activation=activation)
     elif name == 'wresnet28_2':
         model = WideResNet(28, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
@@ -69,8 +88,8 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
         print('Using weight norm.')
         apply_weightnorm(model)
 
-    #model = model.cuda()
-    #model = DataParallel(model)
+    # model = model.cuda()
+    # model = DataParallel(model)
     cudnn.benchmark = True
     return model
 
