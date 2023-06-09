@@ -54,7 +54,7 @@ for idx, func in enumerate(unique_func):
                     return True
             return False
 
-        f = ["nn." + op if check_op(op) else op for op in f]
+        f = ["nn." + op.replace("approximate='none'", "") if check_op(op) else op for op in f]
         function_txt = f'''
 class Func_{idx}(nn.Module):
     """
