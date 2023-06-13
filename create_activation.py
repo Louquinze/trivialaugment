@@ -90,4 +90,4 @@ class Func_{idx}(nn.Module):
                 tag = conf[:-5]
 
                 with open("run_eval.txt", "a") as run:
-                    run.write(f"python -m TrivialAugment.train -c eval_confs/{seed}_{idx}_{tag}.yaml --dataroot data --tag {seed}_{idx}_{tag} --save save/{seed}_{tag}.pth \n")
+                    run.write(f"python -m TrivialAugment.train -c eval_confs/{seed}_{idx}_{tag}.yaml --dataroot data --tag {seed}_{idx}_{tag} --save save/{seed}_{idx}_{tag}.pth \n")
