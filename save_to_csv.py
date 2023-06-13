@@ -7,7 +7,7 @@ path = "save"
 res = None
 
 for file in os.listdir(path):
-    data = torch.load(path + "/" + file)
+    data = torch.load(path + "/" + file, map_location="cpu")
     # func, network
     d = {
         "network": [file.split("_")[2]],
