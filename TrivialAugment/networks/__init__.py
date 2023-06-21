@@ -55,7 +55,11 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
                            groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
                            virtual_bn=conf.get('virtual_bn', False), activation=activation)
-
+    elif name == 'wresnet16_2':
+        model = WideResNet(16, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
+                           adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
+                           groupnorm=conf.get('groupnorm', False), examplewise_bn=conf.get('examplewise_bn', False),
+                           virtual_bn=conf.get('virtual_bn', False), activation=activation)
     elif name == 'wresnet40_2':
         model = WideResNet(40, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
