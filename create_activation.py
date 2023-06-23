@@ -2,12 +2,13 @@ import pandas as pd
 import yaml
 
 
-wres28_10_cifar100 = "wresnet28x10_cifar100_b128_maxlr.1_ta_wide_nowarmup_200epochs.yaml"
-wres40_1_cifar100 = "wresnet40x2_cifar100_b128_maxlr.1_ta_widesesp_nowarmup_200epochs.yaml"
-# res18_1_cifar100 = "wresnet40x2_cifar100_b128_maxlr.1_ta_widesesp_nowarmup_200epochs.yaml"
+wres28_10_cifar10 = "wresnet28x10_cifar10_b128_maxlr.1_ta_wide_nowarmup_200epochs.yaml"
+wres40_1_cifar10 = "wresnet40x2_cifar10_b128_maxlr.1_ta_widesesp_nowarmup_200epochs.yaml"
+# res18_1_cifar10 = "wresnet40x2_cifar10_b128_maxlr.1_ta_widesesp_nowarmup_200epochs.yaml"
+wres16_2_cifar10 = "wresnet16x2_cifar10_b128_maxlr.1_ta_wide_nowarmup_200epochs.yaml"
 
 for activation in ["relu", "silu", "gelu", "elu", "leakyrelu"]:
-    for k, conf in enumerate([wres40_1_cifar100, wres28_10_cifar100]):
+    for k, conf in enumerate([wres16_2_cifar10]):
         for seed in range(5):
             model = conf.split("_")[0]
             with open("confs/" + conf) as file:
@@ -28,13 +29,13 @@ for activation in ["relu", "silu", "gelu", "elu", "leakyrelu"]:
 res = pd.read_csv(f'res.csv')
 res = res[res.model != 'ViTtiny']
 
-res_w10 = res[res.model == 'wideresnet10x2']
-res_w10 = res_w10.sort_values(by='res_arch_val_1', ascending=False)[:int(len(res_w10)*0.25)]
+res_w16 = res[res.model == 'wideresnet16x2']
+res_w16 = res_w16.sort_values(by='res_arch_val_1', ascending=False)[:int(len(res_w16)*0.25)]
 
-res_w28 = res[res.model == 'wideresnet28x2']
-res_w28 = res_w28.sort_values(by='res_arch_val_1', ascending=False)[:int(len(res_w28)*0.25)]
+# res_w28 = res[res.model == 'wideresnet28x2']
+# res_w28 = res_w28.sort_values(by='res_arch_val_1', ascending=False)[:int(len(res_w28)*0.25)]
 
-res = pd.concat([res_w10, res_w28], ignore_index=True)
+res = res_w16
 print(res)
 
 unique_func = pd.unique(res["arch"])
@@ -53,6 +54,9 @@ for idx, func in enumerate(unique_func):
                 if ac in op:
                     return True
             return False
+
+        if "Right" in f[5]:
+            continue
 
         f = ["nn." + op.replace("approximate='none'", "") if check_op(op) else op for op in f]
         function_txt = f'''
@@ -78,7 +82,7 @@ class Func_{idx}(nn.Module):
             ac_f.write(function_txt)
             ac_f.write("\n")
 
-        for k, conf in enumerate([wres40_1_cifar100, wres28_10_cifar100]):
+        for k, conf in enumerate([wres16_2_cifar10]):
             for seed in range(5):
                 with open("confs/" + conf) as file:
                     documents = yaml.full_load(file)
