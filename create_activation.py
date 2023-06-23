@@ -5,7 +5,7 @@ import yaml
 wres28_10_cifar10 = "wresnet28x10_cifar10_b128_maxlr.1_ta_wide_nowarmup_200epochs.yaml"
 wres40_1_cifar10 = "wresnet40x2_cifar10_b128_maxlr.1_ta_widesesp_nowarmup_200epochs.yaml"
 # res18_1_cifar10 = "wresnet40x2_cifar10_b128_maxlr.1_ta_widesesp_nowarmup_200epochs.yaml"
-wres16_2_cifar10 = "wresnet16x2_cifar10_b128_maxlr.1_ta_wide_nowarmup_200epochs.yaml"
+wres16_2_cifar10 = "wresnet16x2_cifar10_b128_maxlr.1_ta_widesesp_nowarmup_200epochs.yaml"
 
 for activation in ["relu", "silu", "gelu", "elu", "leakyrelu"]:
     for k, conf in enumerate([wres16_2_cifar10]):
