@@ -39,7 +39,7 @@ class Pow3(nn.Module):
         super().__init__()
 
     def forward(self, x):
-        x = torch.where(torch.abs(x) > self.inf ** (1 / 3), torch.sign(x) * self.inf ** (1 / 3), x)
+        # x = torch.where(torch.abs(x) > self.inf ** (1 / 3), torch.sign(x) * self.inf ** (1 / 3), x)
         x = torch.pow(x, 3)
         return x
 

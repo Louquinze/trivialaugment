@@ -38,8 +38,8 @@ class Func_wideresnet28x2_1(nn.Module):
         super(Func_wideresnet28x2_1, self).__init__()
         self.u_1 = Asinh()
         self.u_2 = Tanh()
-        self.u_3 = GELU(approximate='none')
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.GELU(approximate='none')
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = Sub()
         self.b_2 = Right()
@@ -56,8 +56,8 @@ class Func_wideresnet28x2_2(nn.Module):
         super(Func_wideresnet28x2_2, self).__init__()
         self.u_1 = Asinh()
         self.u_2 = Tanh()
-        self.u_3 = Max0()
-        self.u_4 = GELU(approximate='none')
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = Maximum()
         self.b_2 = Sub()
@@ -73,8 +73,8 @@ class Func_resnet18_3(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_3, self).__init__()
         self.u_1 = Beta()
-        self.u_2 = GELU(approximate='none')
-        self.u_3 = GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Asinh()
 
         self.b_1 = Minimum()
@@ -92,7 +92,7 @@ class Func_ViTtiny_4(nn.Module):
         super(Func_ViTtiny_4, self).__init__()
         self.u_1 = BetaAdd()
         self.u_2 = BetaAdd()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Pow2()
 
         self.b_1 = Add()
@@ -127,8 +127,8 @@ class Func_wideresnet28x2_6(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_6, self).__init__()
         self.u_1 = BetaAdd()
-        self.u_2 = ELU(alpha=1.0)
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.ELU(alpha=1.0)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Beta()
 
         self.b_1 = Minimum()
@@ -145,7 +145,7 @@ class Func_wideresnet28x2_7(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_7, self).__init__()
         self.u_1 = BetaMul()
-        self.u_2 = GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
         self.u_3 = BetaMul()
         self.u_4 = Beta()
 
@@ -163,7 +163,7 @@ class Func_ViTtiny_8(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_8, self).__init__()
         self.u_1 = BetaMul()
-        self.u_2 = LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
         self.u_3 = Sigmoid()
         self.u_4 = Asinh()
 
@@ -200,7 +200,7 @@ class Func_ViTtiny_10(nn.Module):
         super(Func_ViTtiny_10, self).__init__()
         self.u_1 = BetaMul()
         self.u_2 = Tanh()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Tanh()
 
         self.b_1 = SigMul()
@@ -216,10 +216,10 @@ class Func_resnet18_11(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_11, self).__init__()
-        self.u_1 = ELU(alpha=1.0)
+        self.u_1 = nn.ELU(alpha=1.0)
         self.u_2 = BetaAdd()
         self.u_3 = Min0()
-        self.u_4 = GELU(approximate='none')
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = Add()
         self.b_2 = Sub()
@@ -238,8 +238,8 @@ class Func_ViTtiny_12(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_12, self).__init__()
-        self.u_1 = ELU(alpha=1.0)
-        self.u_2 = ELU(alpha=1.0)
+        self.u_1 = nn.ELU(alpha=1.0)
+        self.u_2 = nn.ELU(alpha=1.0)
         self.u_3 = Pow2()
         self.u_4 = Pow2()
 
@@ -256,10 +256,10 @@ class Func_resnet18_13(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_13, self).__init__()
-        self.u_1 = ELU(alpha=1.0)
+        self.u_1 = nn.ELU(alpha=1.0)
         self.u_2 = Tanh()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = Right()
         self.b_2 = SigMul()
@@ -311,8 +311,8 @@ class Func_resnet18_16(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_16, self).__init__()
         self.u_1 = Exp()
-        self.u_2 = GELU(approximate='none')
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.GELU(approximate='none')
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -328,10 +328,10 @@ class Func_resnet18_17(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_17, self).__init__()
-        self.u_1 = GELU(approximate='none')
-        self.u_2 = ELU(alpha=1.0)
-        self.u_3 = Max0()
-        self.u_4 = GELU(approximate='none')
+        self.u_1 = nn.GELU(approximate='none')
+        self.u_2 = nn.ELU(alpha=1.0)
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = BetaMix()
         self.b_2 = Mul()
@@ -346,8 +346,8 @@ class Func_resnet18_18(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_18, self).__init__()
-        self.u_1 = GELU(approximate='none')
-        self.u_2 = ELU(alpha=1.0)
+        self.u_1 = nn.GELU(approximate='none')
+        self.u_2 = nn.ELU(alpha=1.0)
         self.u_3 = Sigmoid()
         self.u_4 = Sigmoid()
 
@@ -364,7 +364,7 @@ class Func_resnet18_19(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_19, self).__init__()
-        self.u_1 = GELU(approximate='none')
+        self.u_1 = nn.GELU(approximate='none')
         self.u_2 = Exp()
         self.u_3 = Beta()
         self.u_4 = Tanh()
@@ -382,10 +382,10 @@ class Func_resnet18_20(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_20, self).__init__()
-        self.u_1 = GELU(approximate='none')
-        self.u_2 = GELU(approximate='none')
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Maximum()
         self.b_2 = Maximum()
@@ -400,9 +400,9 @@ class Func_wideresnet28x2_21(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_21, self).__init__()
-        self.u_1 = GELU(approximate='none')
-        self.u_2 = GELU(approximate='none')
-        self.u_3 = Max0()
+        self.u_1 = nn.GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaMul()
 
         self.b_1 = SigMul()
@@ -418,9 +418,9 @@ class Func_resnet18_22(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_22, self).__init__()
-        self.u_1 = GELU(approximate='none')
-        self.u_2 = LeakyReLU(negative_slope=0.01)
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.GELU(approximate='none')
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = BetaAdd()
 
         self.b_1 = BetaMix()
@@ -436,8 +436,8 @@ class Func_resnet18_23(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_23, self).__init__()
-        self.u_1 = GELU(approximate='none')
-        self.u_2 = Max0()
+        self.u_1 = nn.GELU(approximate='none')
+        self.u_2 = nn.ReLU()
         self.u_3 = BetaMul()
         self.u_4 = Pow2()
 
@@ -454,10 +454,10 @@ class Func_resnet18_24(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_24, self).__init__()
-        self.u_1 = GELU(approximate='none')
-        self.u_2 = Max0()
+        self.u_1 = nn.GELU(approximate='none')
+        self.u_2 = nn.ReLU()
         self.u_3 = Pow2()
-        self.u_4 = Max0()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Left()
         self.b_2 = BetaMix()
@@ -472,10 +472,10 @@ class Func_wideresnet28x2_25(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_25, self).__init__()
-        self.u_1 = GELU(approximate='none')
+        self.u_1 = nn.GELU(approximate='none')
         self.u_2 = Pow2()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = SigMul()
         self.b_2 = Right()
@@ -490,10 +490,10 @@ class Func_ViTtiny_26(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_26, self).__init__()
-        self.u_1 = GELU(approximate='none')
+        self.u_1 = nn.GELU(approximate='none')
         self.u_2 = Pow3()
-        self.u_3 = GELU(approximate='none')
-        self.u_4 = Max0()
+        self.u_3 = nn.GELU(approximate='none')
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Mul()
         self.b_2 = Maximum()
@@ -508,9 +508,9 @@ class Func_resnet18_27(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_27, self).__init__()
-        self.u_1 = GELU(approximate='none')
+        self.u_1 = nn.GELU(approximate='none')
         self.u_2 = Sqrt()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Tanh()
 
         self.b_1 = Minimum()
@@ -599,7 +599,7 @@ class Func_wideresnet28x2_32(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_32, self).__init__()
         self.u_1 = Identitiy()
-        self.u_2 = SiLU()
+        self.u_2 = nn.SiLU()
         self.u_3 = BetaAdd()
         self.u_4 = Pow3()
 
@@ -616,8 +616,8 @@ class Func_wideresnet28x2_33(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_33, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
-        self.u_2 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
         self.u_3 = Beta()
         self.u_4 = Sign()
 
@@ -634,10 +634,10 @@ class Func_resnet18_34(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_34, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
-        self.u_2 = LeakyReLU(negative_slope=0.01)
-        self.u_3 = LeakyReLU(negative_slope=0.01)
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = Maximum()
         self.b_2 = Maximum()
@@ -652,9 +652,9 @@ class Func_wideresnet28x2_35(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_35, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
-        self.u_2 = LeakyReLU(negative_slope=0.01)
-        self.u_3 = Max0()
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaMul()
 
         self.b_1 = Maximum()
@@ -670,8 +670,8 @@ class Func_ViTtiny_36(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_36, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
-        self.u_2 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
         self.u_3 = Pow2()
         self.u_4 = Pow2()
 
@@ -688,8 +688,8 @@ class Func_ViTtiny_37(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_37, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
-        self.u_2 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
         self.u_3 = Pow2()
         self.u_4 = Pow3()
 
@@ -706,8 +706,8 @@ class Func_ViTtiny_38(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_38, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
-        self.u_2 = Max0()
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.ReLU()
         self.u_3 = Pow2()
         self.u_4 = Pow2()
 
@@ -724,9 +724,9 @@ class Func_ViTtiny_39(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_39, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
         self.u_2 = Pow3()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Pow2()
 
         self.b_1 = Add()
@@ -742,9 +742,9 @@ class Func_ViTtiny_40(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_40, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
-        self.u_2 = SiLU()
-        self.u_3 = Max0()
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.SiLU()
+        self.u_3 = nn.ReLU()
         self.u_4 = Min0()
 
         self.b_1 = Minimum()
@@ -760,7 +760,7 @@ class Func_resnet18_41(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_41, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
         self.u_4 = Sigmoid()
@@ -778,7 +778,7 @@ class Func_ViTtiny_42(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_42, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
         self.u_2 = Sigmoid()
         self.u_3 = Sqrt()
         self.u_4 = Sigmoid()
@@ -796,7 +796,7 @@ class Func_wideresnet28x2_43(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_43, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
         self.u_2 = Sqrt()
         self.u_3 = Sqrt()
         self.u_4 = Sigmoid()
@@ -814,7 +814,7 @@ class Func_ViTtiny_44(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_44, self).__init__()
-        self.u_1 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.LeakyReLU(negative_slope=0.01)
         self.u_2 = Tanh()
         self.u_3 = Sqrt()
         self.u_4 = Pow2()
@@ -832,10 +832,10 @@ class Func_wideresnet28x2_45(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_45, self).__init__()
-        self.u_1 = Max0()
+        self.u_1 = nn.ReLU()
         self.u_2 = BetaAdd()
         self.u_3 = Pow2()
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = Maximum()
         self.b_2 = Right()
@@ -850,9 +850,9 @@ class Func_ViTtiny_46(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_46, self).__init__()
-        self.u_1 = Max0()
+        self.u_1 = nn.ReLU()
         self.u_2 = Identitiy()
-        self.u_3 = ELU(alpha=1.0)
+        self.u_3 = nn.ELU(alpha=1.0)
         self.u_4 = Identitiy()
 
         self.b_1 = Left()
@@ -868,10 +868,10 @@ class Func_resnet18_47(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_47, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = LeakyReLU(negative_slope=0.01)
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Maximum()
         self.b_2 = BetaMix()
@@ -886,10 +886,10 @@ class Func_resnet18_48(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_48, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
         self.u_3 = Sqrt()
-        self.u_4 = GELU(approximate='none')
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = BetaMix()
         self.b_2 = Minimum()
@@ -904,8 +904,8 @@ class Func_resnet18_49(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_49, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
         self.u_3 = Beta()
         self.u_4 = Beta()
 
@@ -922,8 +922,8 @@ class Func_resnet18_50(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_50, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
         self.u_3 = Beta()
         self.u_4 = Beta()
 
@@ -940,9 +940,9 @@ class Func_resnet18_51(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_51, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -958,9 +958,9 @@ class Func_wideresnet28x2_52(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_52, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaMul()
 
         self.b_1 = Add()
@@ -976,10 +976,10 @@ class Func_resnet18_53(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_53, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Add()
         self.b_2 = Maximum()
@@ -994,10 +994,10 @@ class Func_resnet18_54(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_54, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Add()
         self.b_2 = Right()
@@ -1012,10 +1012,10 @@ class Func_resnet18_55(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_55, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Add()
         self.b_2 = SigMul()
@@ -1030,9 +1030,9 @@ class Func_resnet18_56(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_56, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1048,10 +1048,10 @@ class Func_resnet18_57(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_57, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = BetaMix()
         self.b_2 = BetaMix()
@@ -1066,10 +1066,10 @@ class Func_resnet18_58(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_58, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = BetaMix()
         self.b_2 = Left()
@@ -1084,9 +1084,9 @@ class Func_resnet18_59(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_59, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaMul()
 
         self.b_1 = Left()
@@ -1102,9 +1102,9 @@ class Func_resnet18_60(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_60, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaAdd()
 
         self.b_1 = Maximum()
@@ -1120,10 +1120,10 @@ class Func_wideresnet28x2_61(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_61, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = Maximum()
         self.b_2 = BetaMix()
@@ -1138,10 +1138,10 @@ class Func_wideresnet28x2_62(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_62, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Maximum()
         self.b_2 = BetaMix()
@@ -1156,10 +1156,10 @@ class Func_resnet18_63(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_63, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Maximum()
         self.b_2 = Left()
@@ -1175,8 +1175,8 @@ class Func_wideresnet28x2_64(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_64, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
         self.u_3 = Pow2()
         self.u_4 = BetaMul()
 
@@ -1193,8 +1193,8 @@ class Func_ViTtiny_65(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_65, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
         self.u_3 = Pow2()
         self.u_4 = Pow2()
 
@@ -1211,10 +1211,10 @@ class Func_resnet18_66(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_66, self).__init__()
-        self.u_1 = Max0()
-        self.u_2 = Max0()
-        self.u_3 = SiLU()
-        self.u_4 = Max0()
+        self.u_1 = nn.ReLU()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.SiLU()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = SigMul()
         self.b_2 = Left()
@@ -1229,9 +1229,9 @@ class Func_resnet18_67(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_resnet18_67, self).__init__()
-        self.u_1 = Max0()
+        self.u_1 = nn.ReLU()
         self.u_2 = Pow2()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Identitiy()
 
         self.b_1 = BetaMix()
@@ -1247,7 +1247,7 @@ class Func_ViTtiny_68(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_68, self).__init__()
-        self.u_1 = Max0()
+        self.u_1 = nn.ReLU()
         self.u_2 = Sigmoid()
         self.u_3 = Sqrt()
         self.u_4 = Sigmoid()
@@ -1266,9 +1266,9 @@ class Func_resnet18_69(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_69, self).__init__()
         self.u_1 = Min0()
-        self.u_2 = ELU(alpha=1.0)
+        self.u_2 = nn.ELU(alpha=1.0)
         self.u_3 = Beta()
-        self.u_4 = Max0()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Minimum()
         self.b_2 = Add()
@@ -1285,7 +1285,7 @@ class Func_resnet18_70(nn.Module):
         super(Func_resnet18_70, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Beta()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1303,7 +1303,7 @@ class Func_wideresnet28x2_71(nn.Module):
         super(Func_wideresnet28x2_71, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Beta()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Tanh()
 
         self.b_1 = Add()
@@ -1375,7 +1375,7 @@ class Func_resnet18_75(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_75, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
         self.u_3 = BetaMul()
         self.u_4 = Asinh()
 
@@ -1393,8 +1393,8 @@ class Func_resnet18_76(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_76, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = GELU(approximate='none')
-        self.u_3 = GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1411,8 +1411,8 @@ class Func_resnet18_77(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_77, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = GELU(approximate='none')
-        self.u_3 = GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Asinh()
 
         self.b_1 = Minimum()
@@ -1429,9 +1429,9 @@ class Func_ViTtiny_78(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_78, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = GELU(approximate='none')
+        self.u_2 = nn.GELU(approximate='none')
         self.u_3 = Tanh()
-        self.u_4 = GELU(approximate='none')
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = Mul()
         self.b_2 = Minimum()
@@ -1447,8 +1447,8 @@ class Func_resnet18_79(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_79, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = LeakyReLU(negative_slope=0.01)
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1465,8 +1465,8 @@ class Func_wideresnet28x2_80(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_80, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
         self.u_4 = Asinh()
 
         self.b_1 = Add()
@@ -1483,8 +1483,8 @@ class Func_wideresnet28x2_81(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_81, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = Max0()
-        self.u_3 = Max0()
+        self.u_2 = nn.ReLU()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaAdd()
 
         self.b_1 = BetaMix()
@@ -1501,7 +1501,7 @@ class Func_wideresnet28x2_82(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_82, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = Max0()
+        self.u_2 = nn.ReLU()
         self.u_3 = Sigmoid()
         self.u_4 = Sigmoid()
 
@@ -1519,7 +1519,7 @@ class Func_wideresnet28x2_83(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_wideresnet28x2_83, self).__init__()
         self.u_1 = Pow2()
-        self.u_2 = Max0()
+        self.u_2 = nn.ReLU()
         self.u_3 = Sign()
         self.u_4 = Asinh()
 
@@ -1557,7 +1557,7 @@ class Func_resnet18_85(nn.Module):
         super(Func_resnet18_85, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1575,7 +1575,7 @@ class Func_resnet18_86(nn.Module):
         super(Func_resnet18_86, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1593,7 +1593,7 @@ class Func_ViTtiny_87(nn.Module):
         super(Func_ViTtiny_87, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Pow2()
 
         self.b_1 = BetaMix()
@@ -1611,7 +1611,7 @@ class Func_resnet18_88(nn.Module):
         super(Func_resnet18_88, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Asinh()
 
         self.b_1 = Left()
@@ -1629,8 +1629,8 @@ class Func_wideresnet28x2_89(nn.Module):
         super(Func_wideresnet28x2_89, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = Maximum()
         self.b_2 = Maximum()
@@ -1650,7 +1650,7 @@ class Func_ViTtiny_90(nn.Module):
         super(Func_ViTtiny_90, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Pow2()
 
         self.b_1 = Mul()
@@ -1669,7 +1669,7 @@ class Func_wideresnet28x2_91(nn.Module):
         super(Func_wideresnet28x2_91, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Asinh()
 
         self.b_1 = Add()
@@ -1687,7 +1687,7 @@ class Func_wideresnet28x2_92(nn.Module):
         super(Func_wideresnet28x2_92, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Beta()
 
         self.b_1 = Add()
@@ -1705,7 +1705,7 @@ class Func_wideresnet28x2_93(nn.Module):
         super(Func_wideresnet28x2_93, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaAdd()
 
         self.b_1 = Add()
@@ -1723,7 +1723,7 @@ class Func_wideresnet28x2_94(nn.Module):
         super(Func_wideresnet28x2_94, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Tanh()
 
         self.b_1 = Add()
@@ -1741,7 +1741,7 @@ class Func_resnet18_95(nn.Module):
         super(Func_resnet18_95, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1759,7 +1759,7 @@ class Func_wideresnet28x2_96(nn.Module):
         super(Func_wideresnet28x2_96, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Asinh()
 
         self.b_1 = BetaMix()
@@ -1778,7 +1778,7 @@ class Func_wideresnet28x2_97(nn.Module):
         super(Func_wideresnet28x2_97, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaAdd()
 
         self.b_1 = BetaMix()
@@ -1797,7 +1797,7 @@ class Func_wideresnet28x2_98(nn.Module):
         super(Func_wideresnet28x2_98, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaAdd()
 
         self.b_1 = BetaMix()
@@ -1815,7 +1815,7 @@ class Func_wideresnet28x2_99(nn.Module):
         super(Func_wideresnet28x2_99, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = BetaAdd()
 
         self.b_1 = Maximum()
@@ -1833,8 +1833,8 @@ class Func_wideresnet28x2_100(nn.Module):
         super(Func_wideresnet28x2_100, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
-        self.u_4 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.LeakyReLU(negative_slope=0.01)
 
         self.b_1 = Maximum()
         self.b_2 = Maximum()
@@ -1852,7 +1852,7 @@ class Func_ViTtiny_101(nn.Module):
         super(Func_ViTtiny_101, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Pow2()
 
         self.b_1 = Maximum()
@@ -1872,7 +1872,7 @@ class Func_ViTtiny_102(nn.Module):
         self.u_1 = Pow2()
         self.u_2 = Pow2()
         self.u_3 = Pow2()
-        self.u_4 = GELU(approximate='none')
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = Mul()
         self.b_2 = Mul()
@@ -1890,7 +1890,7 @@ class Func_wideresnet28x2_103(nn.Module):
         self.u_1 = Pow2()
         self.u_2 = Pow2()
         self.u_3 = Pow2()
-        self.u_4 = Max0()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Mul()
         self.b_2 = Maximum()
@@ -1908,7 +1908,7 @@ class Func_wideresnet28x2_104(nn.Module):
         self.u_1 = Pow2()
         self.u_2 = Pow2()
         self.u_3 = Pow2()
-        self.u_4 = Max0()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Mul()
         self.b_2 = Mul()
@@ -1983,8 +1983,8 @@ class Func_ViTtiny_108(nn.Module):
         super(Func_ViTtiny_108, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Pow2()
-        self.u_3 = SiLU()
-        self.u_4 = GELU(approximate='none')
+        self.u_3 = nn.SiLU()
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = Mul()
         self.b_2 = Mul()
@@ -2037,7 +2037,7 @@ class Func_ViTtiny_111(nn.Module):
         super(Func_ViTtiny_111, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Sigmoid()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = Sigmoid()
 
         self.b_1 = BetaMix()
@@ -2091,7 +2091,7 @@ class Func_resnet18_114(nn.Module):
         super(Func_resnet18_114, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Sqrt()
-        self.u_3 = GELU(approximate='none')
+        self.u_3 = nn.GELU(approximate='none')
         self.u_4 = BetaMul()
 
         self.b_1 = Minimum()
@@ -2109,8 +2109,8 @@ class Func_ViTtiny_115(nn.Module):
         super(Func_ViTtiny_115, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Tanh()
-        self.u_3 = Max0()
-        self.u_4 = GELU(approximate='none')
+        self.u_3 = nn.ReLU()
+        self.u_4 = nn.GELU(approximate='none')
 
         self.b_1 = Mul()
         self.b_2 = Maximum()
@@ -2126,9 +2126,9 @@ class Func_ViTtiny_116(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_116, self).__init__()
         self.u_1 = Pow3()
-        self.u_2 = GELU(approximate='none')
-        self.u_3 = LeakyReLU(negative_slope=0.01)
-        self.u_4 = SiLU()
+        self.u_2 = nn.GELU(approximate='none')
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_4 = nn.SiLU()
 
         self.b_1 = Mul()
         self.b_2 = Minimum()
@@ -2144,7 +2144,7 @@ class Func_ViTtiny_117(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_117, self).__init__()
         self.u_1 = Pow3()
-        self.u_2 = Max0()
+        self.u_2 = nn.ReLU()
         self.u_3 = Pow2()
         self.u_4 = Pow2()
 
@@ -2179,9 +2179,9 @@ class Func_ViTtiny_119(nn.Module):
     """
     def __init__(self, eps=1e-5):
         super(Func_ViTtiny_119, self).__init__()
-        self.u_1 = SiLU()
-        self.u_2 = LeakyReLU(negative_slope=0.01)
-        self.u_3 = SiLU()
+        self.u_1 = nn.SiLU()
+        self.u_2 = nn.LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.SiLU()
         self.u_4 = Pow3()
 
         self.b_1 = Left()
@@ -2216,7 +2216,7 @@ class Func_resnet18_121(nn.Module):
     def __init__(self, eps=1e-5):
         super(Func_resnet18_121, self).__init__()
         self.u_1 = Sigmoid()
-        self.u_2 = Max0()
+        self.u_2 = nn.ReLU()
         self.u_3 = Sigmoid()
         self.u_4 = Sigmoid()
 
@@ -2345,7 +2345,7 @@ class Func_resnet18_128(nn.Module):
         self.u_1 = Sigmoid()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
-        self.u_4 = Max0()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = Maximum()
         self.b_2 = Maximum()
@@ -2733,7 +2733,7 @@ class Func_resnet18_149(nn.Module):
         self.u_1 = Sqrt()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
-        self.u_4 = Max0()
+        self.u_4 = nn.ReLU()
 
         self.b_1 = SigMul()
         self.b_2 = Left()
@@ -2750,7 +2750,7 @@ class Func_wideresnet28x2_150(nn.Module):
         super(Func_wideresnet28x2_150, self).__init__()
         self.u_1 = Sqrt()
         self.u_2 = Sqrt()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Tanh()
 
         self.b_1 = Maximum()
@@ -2768,7 +2768,7 @@ class Func_ViTtiny_151(nn.Module):
         super(Func_ViTtiny_151, self).__init__()
         self.u_1 = Sqrt()
         self.u_2 = Sqrt()
-        self.u_3 = LeakyReLU(negative_slope=0.01)
+        self.u_3 = nn.LeakyReLU(negative_slope=0.01)
         self.u_4 = Asinh()
 
         self.b_1 = Sub()
@@ -2804,7 +2804,7 @@ class Func_wideresnet28x2_153(nn.Module):
         super(Func_wideresnet28x2_153, self).__init__()
         self.u_1 = Tanh()
         self.u_2 = BetaMul()
-        self.u_3 = Max0()
+        self.u_3 = nn.ReLU()
         self.u_4 = Sign()
 
         self.b_1 = SigMul()
