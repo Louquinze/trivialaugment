@@ -49,7 +49,7 @@ class Sqrt(nn.Module):
         super().__init__()
 
     def forward(self, x):
-        x = torch.where(x < 1e-3, 1e-3, x)
+        x = x.clamp(min=0.001)
         return torch.sqrt(x)
 
 
