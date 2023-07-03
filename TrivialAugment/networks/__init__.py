@@ -8,6 +8,7 @@ import torch.backends.cudnn as cudnn
 from TrivialAugment.networks.resnet import ResNet
 from TrivialAugment.networks.shakeshake.shake_resnet import ShakeResNet
 from TrivialAugment.networks.wideresnet import WideResNet
+from TrivialAugment.networks.vision_transformer import ViT
 from TrivialAugment.networks.shakeshake.shake_resnext import ShakeResNeXt
 from TrivialAugment.networks.convnet import SeqConvNet
 from TrivialAugment.networks.mlp import MLP
@@ -50,6 +51,8 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
         model = ResNet(dataset='imagenet', depth=50, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == 'resnet200':
         model = ResNet(dataset='imagenet', depth=200, num_classes=num_class, bottleneck=True, activation=activation)
+    elif name == "ViTtiny":
+        model = ViT(img_size=16, depth=6, emb_size=516, num_heads=12, ac_func=activation)
     elif name == 'wresnet10_2':
         model = WideResNet(10, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
