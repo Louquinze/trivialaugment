@@ -23,7 +23,7 @@ def get_class_names(file_path):
     class_names = [node.name for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
     return class_names
 
-def create_run(runs, seeds):
+def create_run(runs, seeds, clamp):
     for activation in ["relu", "silu", "gelu", "elu", "leakyrelu"]:
         for k, conf in enumerate(runs):
             for seed in range(seeds):
@@ -37,14 +37,18 @@ def create_run(runs, seeds):
                     tag = conf[:-5]
                 documents["seed"] = seed
                 documents["activation"] = activation
-                with open(f'eval_confs/{seed}_{activation}_{tag}.yaml', 'w') as file:
+                documents["clamp"] = clamp
+                with open(f'eval_confs/{seed}_{activation}_{tag}_{clamp}.yaml', 'w') as file:
                     documents = yaml.dump(documents, file)
 
                 with open("run_eval.txt", "a") as run:
                     run.write(
-                        f"python -m TrivialAugment.train -c eval_confs/{seed}_{activation}_{tag}.yaml --dataroot data --tag {seed}_{activation}_{tag} --save save/{seed}_{activation}_{tag}.pth \n")
+                        f"python -m TrivialAugment.train -c eval_confs/{seed}_{activation}_{tag}_{clamp}.yaml --dataroot data --tag {seed}_{activation}_{tag}_{clamp} --save save/{seed}_{activation}_{tag}_{clamp}.pth \n")
 
-    func = [f for f in get_class_names('TrivialAugment/networks/activations.py') if model in f]
+    if clamp:
+        func = [f for f in get_class_names('TrivialAugment/networks/activations_clamp.py') if model in f]
+    else:
+        func = [f for f in get_class_names('TrivialAugment/networks/activations.py') if model in f]
 
     for idx, f in enumerate(func):
         for k, conf in enumerate(runs):
@@ -53,12 +57,13 @@ def create_run(runs, seeds):
                     documents = yaml.full_load(file)
                 documents["seed"] = seed
                 documents["activation"] = f
-                with open(f'eval_confs/{seed}_{idx}_{conf[:-5]}.yaml', 'w') as file:
+                documents["clamp"] = clamp
+                with open(f'eval_confs/{seed}_{idx}_{conf[:-5]}_{clamp}.yaml', 'w') as file:
                     documents = yaml.dump(documents, file)
 
                 tag = conf[:-5]
 
                 with open("run_eval.txt", "a") as run:
-                    run.write(f"python -m TrivialAugment.train -c eval_confs/{seed}_{idx}_{tag}.yaml --dataroot data --tag {seed}_{idx}_{tag} --save save/{seed}_{idx}_{tag}.pth \n")
+                    run.write(f"python -m TrivialAugment.train -c eval_confs/{seed}_{idx}_{tag}_{clamp}.yaml --dataroot data --tag {seed}_{idx}_{tag}_{clamp} --save save/{seed}_{idx}_{tag}_{clamp}.pth \n")
 
-create_run([ViT_cifar10], 1)
+create_run([ViT_cifar10], 1, False)
