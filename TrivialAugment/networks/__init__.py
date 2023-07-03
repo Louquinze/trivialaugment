@@ -52,7 +52,7 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
     elif name == 'resnet200':
         model = ResNet(dataset='imagenet', depth=200, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == "ViTtiny":
-        model = ViT(img_size=16, depth=6, emb_size=516, num_heads=12, ac_func=activation)
+        model = ViT(img_size=32, depth=12, emb_size=192, ac_func=activation)
     elif name == 'wresnet10_2':
         model = WideResNet(10, 2, dropout_rate=conf.get('dropout', 0.0), num_classes=num_class,
                            adaptive_dropouter_creator=ad_creators[0], adaptive_conv_dropouter_creator=ad_creators[1],
