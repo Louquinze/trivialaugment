@@ -2,11 +2,14 @@ import os
 
 import pandas as pd
 import torch
+import yaml
 
 path = "save"
 res = None
 
 for file in os.listdir(path):
+    conf_name = "eval_confs/" + "_".join(file.split("_")[:-3]) + ".yaml"
+    print(conf_name)
     if "e200" not in file:
         continue
     data = torch.load(path + "/" + file, map_location="cpu")
