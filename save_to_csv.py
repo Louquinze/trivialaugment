@@ -7,6 +7,8 @@ path = "save"
 res = None
 
 for file in os.listdir(path):
+    if "e200" not in file:
+        continue
     data = torch.load(path + "/" + file, map_location="cpu")
     # func, network
     d = {
@@ -16,6 +18,7 @@ for file in os.listdir(path):
         "epoch": [data["epoch"]],
         "test_top1": [data["log"]["test"]["top1"]],
         "eval_test_top1": [data["log"]["test"]["eval_top1"]],
+        "file": [file]
     }
 
     d = pd.DataFrame(d)
@@ -25,4 +28,4 @@ for file in os.listdir(path):
     else:
         res = pd.concat((res, d), ignore_index=True)
 
-    res.to_csv(path + ".csv")
+res.to_csv(path + ".csv")
