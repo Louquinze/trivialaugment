@@ -42,13 +42,11 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
         mod = __import__('TrivialAugment.networks.activations', fromlist=[activation])
         activation = getattr(mod, activation)
 
-    if name == 'resnet18cifar10':
+    if name == 'resnet18':
         model = ResNet(dataset='cifar10', depth=18, num_classes=num_class, bottleneck=True, activation=activation)
-    elif name == 'resnet18cifar100':
-        model = ResNet(dataset='cifar100', depth=18, num_classes=num_class, bottleneck=True, activation=activation)
-    elif name == 'resnet34cifar10':
+    elif name == 'resnet34':
         model = ResNet(dataset='cifar10', depth=34, num_classes=num_class, bottleneck=True, activation=activation)
-    elif name == 'resnet50cifar10':
+    elif name == 'resnet50':
         model = ResNet(dataset='cifar10', depth=50, num_classes=num_class, bottleneck=True, activation=activation)
     elif name == 'resnet50':
         model = ResNet(dataset='imagenet', depth=50, num_classes=num_class, bottleneck=True, activation=activation)
