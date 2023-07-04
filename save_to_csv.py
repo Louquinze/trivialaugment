@@ -18,7 +18,7 @@ for file in os.listdir(path):
     # func, network
     d = {
         "network": [file.split("_")[2]],
-        "func": [my_dict["activatio"]],
+        "func": [my_dict["activation"]],
         "seed": [file.split("_")[0]],
         "epoch": [data["epoch"]],
         "test_top1": [data["log"]["test"]["top1"]],
