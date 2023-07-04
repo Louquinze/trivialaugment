@@ -9,7 +9,7 @@ path = "save"
 res = None
 
 for file in os.listdir(path):
-    conf_name = "eval_confs/" + "_".join(file.split("_")[:-3]) + ".yaml"
+    conf_name = "eval_confs/" + "_".join(file.split("_")[:-4]) + ".yaml"
     print(conf_name)
     if "e200" not in file:
         continue
