@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import torch
 import yaml
+import bios
 
 path = "save"
 res = None
@@ -13,10 +14,11 @@ for file in os.listdir(path):
     if "e200" not in file:
         continue
     data = torch.load(path + "/" + file, map_location="cpu")
+    my_dict = bios.read(conf_name)
     # func, network
     d = {
         "network": [file.split("_")[2]],
-        "func": [file.split("_")[1]],
+        "func": [my_dict["activatio"]],
         "seed": [file.split("_")[0]],
         "epoch": [data["epoch"]],
         "test_top1": [data["log"]["test"]["top1"]],
