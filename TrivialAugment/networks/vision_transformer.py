@@ -139,12 +139,12 @@ class ViT(nn.Sequential):
                  depth: int = 12,
                  n_classes: int = 10,
                  **kwargs):
-        self.crop = torchvision.transforms.RandomCrop(img_size)
         super().__init__(
             PatchEmbedding(in_channels, patch_size, emb_size, img_size),
             TransformerEncoder(depth, emb_size=emb_size, **kwargs),
             ClassificationHead(emb_size, n_classes)
         )
+        self.crop = torchvision.transforms.RandomCrop(img_size)
 
     def forward(self, input):
         input = self.crop(input)
