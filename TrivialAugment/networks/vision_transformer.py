@@ -1,6 +1,7 @@
 # https://towardsdatascience.com/implementing-visualttransformer-in-pytorch-184f9f16f632
 # https://www.researchgate.net/figure/Comparison-between-variants-of-the-ViT-and-ARViT2D_tbl1_358365430
 import torch
+import torchvision
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 
@@ -138,8 +139,15 @@ class ViT(nn.Sequential):
                  depth: int = 12,
                  n_classes: int = 10,
                  **kwargs):
+        self.crop = torchvision.transforms.RandomCrop(img_size)
         super().__init__(
             PatchEmbedding(in_channels, patch_size, emb_size, img_size),
             TransformerEncoder(depth, emb_size=emb_size, **kwargs),
             ClassificationHead(emb_size, n_classes)
         )
+
+    def forward(self, input):
+        input = self.crop(input)
+        for module in self:
+            input = module(input)
+        return input
