@@ -31,9 +31,18 @@ from TrivialAugment.metrics import accuracy, Accumulator
 from TrivialAugment.networks import get_model, num_class
 from warmup_scheduler import GradualWarmupScheduler
 import aug_lib
+import sys
 
 logger = get_logger('TrivialAugment')
 logger.setLevel(logging.DEBUG)
+
+device = ('cuda' if torch.cuda.is_available() else 'cpu')
+try:
+    assert device == "cuda"
+except:
+    with open("../re_run.txt", "a") as f:
+        f.write(' '.join(sys.argv) + "\n")
+    raise NotImplementedError
 
 def run_epoch(rank, worldsize, model, loader, loss_fn, optimizer, desc_default='', epoch=0, writer=None, verbose=1, scheduler=None,sample_pairing_loader=None):
     tqdm_disable = bool(os.environ.get('TASK_NAME', ''))    # KakaoBrain Environment
