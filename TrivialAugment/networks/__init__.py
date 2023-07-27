@@ -35,12 +35,12 @@ def get_model(conf, bs, activation, num_class=10, writer=None):
         activation = nn.LeakyReLU
     elif activation == "gelu":
         activation = nn.GELU
-    elif conf['clamp']:
+    else:
         mod = __import__('TrivialAugment.networks.activations_clamp', fromlist=[activation])
         activation = getattr(mod, activation)
-    else:
-        mod = __import__('TrivialAugment.networks.activations', fromlist=[activation])
-        activation = getattr(mod, activation)
+    # else:
+    #     mod = __import__('TrivialAugment.networks.activations', fromlist=[activation])
+    #     activation = getattr(mod, activation)
 
     if name == 'resnet18':
         model = ResNet(dataset='cifar10', depth=18, num_classes=num_class, bottleneck=False, activation=activation)
