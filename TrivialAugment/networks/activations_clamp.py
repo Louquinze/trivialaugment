@@ -1,7 +1,7 @@
 import torch.nn as nn
 
-from operations.binary_operator_no_clamp import *
-from operations.unary_operator_no_clamp import *
+from TrivialAugment.networks.binary_operator_clamp import *
+from TrivialAugment.networks.unary_operator_clamp import *
 
 
 class f0_res18_cifar100_drnas_0_darts_1_v3_0_v4_1(nn.Module):
