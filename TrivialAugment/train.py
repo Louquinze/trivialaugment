@@ -294,15 +294,15 @@ def train_and_eval(rank, worldsize, tag, dataroot, test_ratio=0.0, cv_fold=0, re
                         'optimizer': optimizer.state_dict(),
                         'model': model.state_dict()
                     }, save_path)
-                    torch.save({
-                        'epoch': epoch,
-                        'log': {
-                            'train': rs['train'].get_dict(),
-                            'test': rs['test'].get_dict(),
-                        },
-                        'optimizer': optimizer.state_dict(),
-                        'model': model.state_dict()
-                    }, save_path.replace('.pth', '_e%d_top1_%.3f_%.3f' % (epoch, rs['train']['top1'], rs['test']['top1']) + '.pth'))
+                    # torch.save({
+                    #     'epoch': epoch,
+                    #     'log': {
+                    #         'train': rs['train'].get_dict(),
+                    #         'test': rs['test'].get_dict(),
+                    #     },
+                    #     'optimizer': optimizer.state_dict(),
+                    #     'model': model.state_dict()
+                    #  }, save_path.replace('.pth', '_e%d_top1_%.3f_%.3f' % (epoch, rs['train']['top1'], rs['test']['top1']) + '.pth'))
 
         early_finish_epoch = C.get().get('early_finish_epoch', None)
         if early_finish_epoch == epoch:
