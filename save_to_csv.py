@@ -9,16 +9,17 @@ path = "save"
 res = None
 
 for file in os.listdir(path):
-    conf_name = "eval_confs/" + "_".join(file.split("_")[:-4]) + ".yaml"
-    print(conf_name)
-    if "e200" not in file:
+    # conf_name = "eval_confs/" + "_".join(file.split("_")[:-4]) + ".yaml"
+    # print(conf_name)
+    if "top" in file:
         continue
+    print(path, file)
     data = torch.load(path + "/" + file, map_location="cpu")
-    my_dict = bios.read(conf_name)
+    # my_dict = bios.read(conf_name)
     # func, network
     d = {
         "network": [file.split("_")[2]],
-        "func": [my_dict["activation"]],
+        # "func": [my_dict["activation"]],
         "seed": [file.split("_")[0]],
         "epoch": [data["epoch"]],
         "test_top1": [data["log"]["test"]["top1"]],
@@ -33,4 +34,5 @@ for file in os.listdir(path):
     else:
         res = pd.concat((res, d), ignore_index=True)
 
+print(res)
 res.to_csv(path + ".csv")
