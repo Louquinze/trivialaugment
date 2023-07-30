@@ -17,9 +17,14 @@ for file in os.listdir(path):
     data = torch.load(path + "/" + file, map_location="cpu")
     # my_dict = bios.read(conf_name)
     # func, network
+    if "_f" in file:
+        f = "_".join(file.split("_")[1:12])
+    else:
+        f = file.split("_")[1]
     d = {
-        "network": [file.split("_")[2]],
-        # "func": [my_dict["activation"]],
+        "network": [file.split("_")[-8]],
+        "dataset": [file.split("_")[-7]],
+        "func": [f],
         "seed": [file.split("_")[0]],
         "epoch": [data["epoch"]],
         "test_top1": [data["log"]["test"]["top1"]],
