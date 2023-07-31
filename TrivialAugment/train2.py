@@ -436,7 +436,7 @@ if __name__ == '__main__':
     pre_parser = ArgumentParser()
     pre_parser.add_argument('--local_rank', default=None, type=int)
     args, _ = pre_parser.parse_known_args()
-    config_path = pre_parser.config[0]
+    config_path = args.config[0]
     if args.local_rank is None:
         print("Spawning processes")
         world_size = torch.cuda.device_count()
