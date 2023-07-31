@@ -355,7 +355,7 @@ def spawn_process(global_rank, worldsize, port_suffix, args, config_path=None, c
     C.get()['started_with_spawn'] = started_with_spawn
 
     if worldsize:
-        assert worldsize == 2, f"Did not specify the number of GPUs in Config with which it was started: {worldsize} vs {C.get()['gpus']}"
+        assert worldsize == C.get()["gpus"], f"Did not specify the number of GPUs in Config with which it was started: {worldsize} vs {C.get()['gpus']}"
     else:
         assert 'gpus' not in C.get() or C.get()['gpus'] == 1
 
