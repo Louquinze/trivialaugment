@@ -436,13 +436,14 @@ if __name__ == '__main__':
     pre_parser = ArgumentParser()
     pre_parser.add_argument('--local_rank', default=None, type=int)
     args, _ = pre_parser.parse_known_args()
+    config_path = pre_parser.config[0]
     if args.local_rank is None:
         print("Spawning processes")
         world_size = torch.cuda.device_count()
         port_suffix = str(random.randint(10,99))
         if world_size > 1:
             outcome = mp.spawn(spawn_process,
-                              args=(world_size,port_suffix,parse_args()),
+                              args=(world_size,port_suffix,parse_args(),config_path),
                               nprocs=world_size,
                               join=True)
         else:
