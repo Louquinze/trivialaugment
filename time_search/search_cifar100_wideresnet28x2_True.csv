@@ -1,0 +1,7 @@
+,,,,time_avg,time_avg
+,,,,mean,std
+conv_value,optimizer,model,version,,
+2,darts,wideresnet28x2,v3,441.6964575140476,24.820334153645696
+2,darts,wideresnet28x2,v4,374.2495230445862,27.4125375043243
+2,drnas,wideresnet28x2,v3,595.7368005902767,53.981138670129326
+2,drnas,wideresnet28x2,v4,485.170357158184,16.26882200144706
