@@ -1,7 +1,40 @@
+import torch
 import torch.nn as nn
 
 from TrivialAugment.networks.binary_operator_clamp import *
 from TrivialAugment.networks.unary_operator_clamp import *
+
+
+class Func1(nn.Module):
+    def __init__(self):
+        super(Func1, self).__init__()
+        self.beta = nn.Parameter(torch.tensor(1.))
+        self.beta_m = nn.Parameter(torch.tensor(.5))
+        self.lrelu = nn.LeakyReLU()
+
+    def forward(self, x):
+        return torch.sigmoid(self.beta_m) * (torch.pow(x, 2).clamp(max=10) + self.lrelu(x) + self.beta) + (
+                    1 - torch.sigmoid(self.beta_m)) * torch.relu(x)
+
+
+class Func2(nn.Module):
+    def __init__(self):
+        super(Func2, self).__init__()
+        self.beta = nn.Parameter(torch.tensor(1.))
+
+    def forward(self, x):
+        return 3*torch.relu(x) + self.beta
+
+
+class Func3(nn.Module):
+    def __init__(self):
+        super(Func3, self).__init__()
+        self.beta = nn.Parameter(torch.tensor(1.))
+        self.beta_m = nn.Parameter(torch.tensor(.5))
+
+    def forward(self, x):
+        return torch.sigmoid(self.beta_m) * (torch.pow(x, 2).clamp(max=10) + torch.relu(x) + self.beta) + (
+                    1 - torch.sigmoid(self.beta_m)) * torch.relu(x)
 
 
 class f0_res18_cifar100_drnas_0_darts_1_v3_0_v4_1(nn.Module):
