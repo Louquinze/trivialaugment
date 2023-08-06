@@ -7,7 +7,7 @@ from TrivialAugment.networks.unary_operator_clamp import *
 
 class Func_0_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_0_Resnet18_gdas, self).__init__()
+        super(Func_0_Resnet18_gdas_half, self).__init__()
         self.u_1 = Pow2()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -22,7 +22,7 @@ class Func_0_Resnet18_gdas_half(nn.Module):
 
 class Func_1_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_1_Resnet18_gdas, self).__init__()
+        super(Func_1_Resnet18_gdas_half, self).__init__()
         self.u_1 = SiLU()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -37,7 +37,7 @@ class Func_1_Resnet18_gdas_half(nn.Module):
 
 class Func_2_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_2_Resnet18_gdas, self).__init__()
+        super(Func_2_Resnet18_gdas_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = SiLU()
         self.u_3 = Sigmoid()
@@ -52,7 +52,7 @@ class Func_2_Resnet18_gdas_half(nn.Module):
 
 class Func_3_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_3_Resnet18_gdas, self).__init__()
+        super(Func_3_Resnet18_gdas_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -67,7 +67,7 @@ class Func_3_Resnet18_gdas_half(nn.Module):
 
 class Func_4_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_4_Resnet18_gdas, self).__init__()
+        super(Func_4_Resnet18_gdas_half, self).__init__()
         self.u_1 = Pow3()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -82,7 +82,7 @@ class Func_4_Resnet18_gdas_half(nn.Module):
 
 class Func_5_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_5_Resnet18_gdas, self).__init__()
+        super(Func_5_Resnet18_gdas_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = SiLU()
         self.u_3 = Sigmoid()
@@ -97,7 +97,7 @@ class Func_5_Resnet18_gdas_half(nn.Module):
 
 class Func_6_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_6_Resnet18_gdas, self).__init__()
+        super(Func_6_Resnet18_gdas_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -112,7 +112,7 @@ class Func_6_Resnet18_gdas_half(nn.Module):
 
 class Func_7_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_7_Resnet18_gdas, self).__init__()
+        super(Func_7_Resnet18_gdas_half, self).__init__()
         self.u_1 = SiLU()
         self.u_2 = Sqrt()
         self.u_3 = Sigmoid()
@@ -127,7 +127,7 @@ class Func_7_Resnet18_gdas_half(nn.Module):
 
 class Func_8_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_8_Resnet18_gdas, self).__init__()
+        super(Func_8_Resnet18_gdas_half, self).__init__()
         self.u_1 = Sqrt()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -142,7 +142,7 @@ class Func_8_Resnet18_gdas_half(nn.Module):
 
 class Func_9_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_9_Resnet18_gdas, self).__init__()
+        super(Func_9_Resnet18_gdas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Sigmoid()
         self.u_3 = Min0()
@@ -157,7 +157,7 @@ class Func_9_Resnet18_gdas_half(nn.Module):
 
 class Func_0_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_0_Resnet18_drnas, self).__init__()
+        super(Func_0_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -172,7 +172,7 @@ class Func_0_Resnet18_drnas_half(nn.Module):
 
 class Func_1_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_1_Resnet18_drnas, self).__init__()
+        super(Func_1_Resnet18_drnas_half, self).__init__()
         self.u_1 = LeakyReLU(negative_slope=0.01)
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -187,7 +187,7 @@ class Func_1_Resnet18_drnas_half(nn.Module):
 
 class Func_2_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_2_Resnet18_drnas, self).__init__()
+        super(Func_2_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -202,7 +202,7 @@ class Func_2_Resnet18_drnas_half(nn.Module):
 
 class Func_3_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_3_Resnet18_drnas, self).__init__()
+        super(Func_3_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -217,7 +217,7 @@ class Func_3_Resnet18_drnas_half(nn.Module):
 
 class Func_4_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_4_Resnet18_drnas, self).__init__()
+        super(Func_4_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -232,7 +232,7 @@ class Func_4_Resnet18_drnas_half(nn.Module):
 
 class Func_5_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_5_Resnet18_drnas, self).__init__()
+        super(Func_5_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -247,7 +247,7 @@ class Func_5_Resnet18_drnas_half(nn.Module):
 
 class Func_6_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_6_Resnet18_drnas, self).__init__()
+        super(Func_6_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -262,7 +262,7 @@ class Func_6_Resnet18_drnas_half(nn.Module):
 
 class Func_7_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_7_Resnet18_drnas, self).__init__()
+        super(Func_7_Resnet18_drnas_half, self).__init__()
         self.u_1 = LeakyReLU(negative_slope=0.01)
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -277,7 +277,7 @@ class Func_7_Resnet18_drnas_half(nn.Module):
 
 class Func_8_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_8_Resnet18_drnas, self).__init__()
+        super(Func_8_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -292,7 +292,7 @@ class Func_8_Resnet18_drnas_half(nn.Module):
 
 class Func_9_Resnet18_drnas_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_9_Resnet18_drnas, self).__init__()
+        super(Func_9_Resnet18_drnas_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = LeakyReLU(negative_slope=0.01)
@@ -307,7 +307,7 @@ class Func_9_Resnet18_drnas_half(nn.Module):
 
 class Func_0_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_0_Resnet18_darts, self).__init__()
+        super(Func_0_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Beta()
@@ -322,7 +322,7 @@ class Func_0_Resnet18_darts_half(nn.Module):
 
 class Func_1_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_1_Resnet18_darts, self).__init__()
+        super(Func_1_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = GELU(approximate='none')
@@ -337,7 +337,7 @@ class Func_1_Resnet18_darts_half(nn.Module):
 
 class Func_2_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_2_Resnet18_darts, self).__init__()
+        super(Func_2_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Beta()
@@ -352,7 +352,7 @@ class Func_2_Resnet18_darts_half(nn.Module):
 
 class Func_3_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_3_Resnet18_darts, self).__init__()
+        super(Func_3_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Beta()
@@ -367,7 +367,7 @@ class Func_3_Resnet18_darts_half(nn.Module):
 
 class Func_4_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_4_Resnet18_darts, self).__init__()
+        super(Func_4_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -382,7 +382,7 @@ class Func_4_Resnet18_darts_half(nn.Module):
 
 class Func_5_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_5_Resnet18_darts, self).__init__()
+        super(Func_5_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Beta()
@@ -397,7 +397,7 @@ class Func_5_Resnet18_darts_half(nn.Module):
 
 class Func_8_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_8_Resnet18_darts, self).__init__()
+        super(Func_8_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Beta()
@@ -412,7 +412,7 @@ class Func_8_Resnet18_darts_half(nn.Module):
 
 class Func_6_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_6_Resnet18_darts, self).__init__()
+        super(Func_6_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Beta()
@@ -427,7 +427,7 @@ class Func_6_Resnet18_darts_half(nn.Module):
 
 class Func_7_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_7_Resnet18_darts, self).__init__()
+        super(Func_7_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = GELU(approximate='none')
@@ -442,7 +442,7 @@ class Func_7_Resnet18_darts_half(nn.Module):
 
 class Func_9_Resnet18_darts_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_9_Resnet18_darts, self).__init__()
+        super(Func_9_Resnet18_darts_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Beta()
@@ -457,7 +457,7 @@ class Func_9_Resnet18_darts_half(nn.Module):
 
 class Func_0_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_0_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_0_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -472,7 +472,7 @@ class Func_0_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_1_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_1_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_1_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -487,7 +487,7 @@ class Func_1_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_2_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_2_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_2_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -502,7 +502,7 @@ class Func_2_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_3_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_3_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_3_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -517,7 +517,7 @@ class Func_3_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_4_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_4_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_4_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -532,7 +532,7 @@ class Func_4_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_5_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_5_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_5_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -547,7 +547,7 @@ class Func_5_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_6_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_6_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_6_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -562,7 +562,7 @@ class Func_6_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_7_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_7_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_7_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -577,7 +577,7 @@ class Func_7_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_8_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_8_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_8_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -592,7 +592,7 @@ class Func_8_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_9_Resnet18_drnas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_9_Resnet18_drnas_shrinking, self).__init__()
+        super(Func_9_Resnet18_drnas_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = Max0()
         self.u_3 = Max0()
@@ -607,7 +607,7 @@ class Func_9_Resnet18_drnas_shrinking_half(nn.Module):
 
 class Func_0_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_0_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_0_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = LeakyReLU(negative_slope=0.01)
         self.u_3 = Sqrt()
@@ -622,7 +622,7 @@ class Func_0_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_1_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_1_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_1_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -637,7 +637,7 @@ class Func_1_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_2_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_2_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_2_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sigmoid()
         self.u_3 = Sqrt()
@@ -652,7 +652,7 @@ class Func_2_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_3_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_3_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_3_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Exp()
         self.u_3 = Max0()
@@ -667,7 +667,7 @@ class Func_3_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_4_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_4_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_4_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sqrt()
         self.u_3 = Sigmoid()
@@ -682,7 +682,7 @@ class Func_4_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_5_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_5_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_5_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sqrt()
         self.u_3 = Sigmoid()
@@ -697,7 +697,7 @@ class Func_5_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_6_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_6_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_6_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -712,7 +712,7 @@ class Func_6_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_7_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_7_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_7_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sigmoid()
         self.u_3 = Sqrt()
@@ -727,7 +727,7 @@ class Func_7_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_9_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_9_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_9_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sigmoid()
         self.u_2 = Sigmoid()
         self.u_3 = Sigmoid()
@@ -742,7 +742,7 @@ class Func_9_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_8_Resnet18_gdas_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_8_Resnet18_gdas_shrinking, self).__init__()
+        super(Func_8_Resnet18_gdas_shrinking_half, self).__init__()
         self.u_1 = Sqrt()
         self.u_2 = LeakyReLU(negative_slope=0.01)
         self.u_3 = Sigmoid()
@@ -757,7 +757,7 @@ class Func_8_Resnet18_gdas_shrinking_half(nn.Module):
 
 class Func_0_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_0_Resnet18_darts_shrinking, self).__init__()
+        super(Func_0_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -772,7 +772,7 @@ class Func_0_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_1_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_1_Resnet18_darts_shrinking, self).__init__()
+        super(Func_1_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = GELU(approximate='none')
@@ -787,7 +787,7 @@ class Func_1_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_2_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_2_Resnet18_darts_shrinking, self).__init__()
+        super(Func_2_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -802,7 +802,7 @@ class Func_2_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_3_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_3_Resnet18_darts_shrinking, self).__init__()
+        super(Func_3_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -817,7 +817,7 @@ class Func_3_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_4_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_4_Resnet18_darts_shrinking, self).__init__()
+        super(Func_4_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = Max0()
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -832,7 +832,7 @@ class Func_4_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_5_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_5_Resnet18_darts_shrinking, self).__init__()
+        super(Func_5_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -847,7 +847,7 @@ class Func_5_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_6_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_6_Resnet18_darts_shrinking, self).__init__()
+        super(Func_6_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -862,7 +862,7 @@ class Func_6_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_7_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_7_Resnet18_darts_shrinking, self).__init__()
+        super(Func_7_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = Max0()
         self.u_3 = GELU(approximate='none')
@@ -877,7 +877,7 @@ class Func_7_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_8_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_8_Resnet18_darts_shrinking, self).__init__()
+        super(Func_8_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
@@ -892,7 +892,7 @@ class Func_8_Resnet18_darts_shrinking_half(nn.Module):
 
 class Func_9_Resnet18_darts_shrinking_half(nn.Module):
     def __init__(self, eps=1e-5):
-        super(Func_9_Resnet18_darts_shrinking, self).__init__()
+        super(Func_9_Resnet18_darts_shrinking_half, self).__init__()
         self.u_1 = GELU(approximate='none')
         self.u_2 = GELU(approximate='none')
         self.u_3 = Max0()
