@@ -57,9 +57,9 @@ for activation in classes:
             tag = conf[:-5]
             documents["seed"] = seed
             documents["activation"] = activation
-            with open(f'eval_confs/{seed}_{activation}_{tag}.yaml', 'w') as file:
+            with open(f'eval_confs/{seed}_{activation}_{tag}_half.yaml', 'w') as file:
                 documents = yaml.dump(documents, file)
 
             with open(f"run_eval_{model}_half.txt", "a") as run:
                 run.write(
-                    f"python -m TrivialAugment.train -c eval_confs/{seed}_{activation}_{tag}.yaml --dataroot data --tag {seed}_{activation}_{tag} --save save/{seed}_{activation}_{tag}.pth \n")
+                    f"python -m TrivialAugment.train -c eval_confs/{seed}_{activation}_{tag}_half.yaml --dataroot data --tag {seed}_{activation}_{tag}_half --save save/{seed}_{activation}_{tag}_half.pth \n")
