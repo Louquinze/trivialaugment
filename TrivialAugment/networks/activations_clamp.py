@@ -4,6 +4,20 @@ import torch.nn as nn
 from TrivialAugment.networks.binary_operator_clamp import *
 from TrivialAugment.networks.unary_operator_clamp import *
 
+class Func_t(nn.Module):
+    def __init__(self, eps=1e-5):
+        super(Func_t, self).__init__()
+        self.u_1 = lambda x: torch.pow(x, 2)
+        self.u_2 = torch.relu
+        self.u_3 = nn.GELU()
+        self.u_4 = torch.asinh
+
+        self.b_1 = BetaMix()
+        self.b_2 = BetaMix()
+
+    def forward(self, x):
+        return self.b_2([self.u_4(self.b_1([self.u_1(x), self.u_2(x)])), self.u_3(x)])
+
 
 class Func_0_Resnet18_gdas_half(nn.Module):
     def __init__(self, eps=1e-5):
